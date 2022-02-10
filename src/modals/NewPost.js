@@ -1,27 +1,39 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NewPostForm from '../components/NewPostForm';
 
-const AddCategory = ({open, setIsOpen, category, setCategory, setCategoryText, categoryText, difficultyArray, courseArray, workloadArray, profRateArray, facultyArray, children}) => {
-
-const[error, setError] = useState("");
-
-const onCancel = () => {
-    setError("");
-    setIsOpen(false);     
-}
-
-const newCategoryHandler = () => {
-    if(categoryText !== "") {
-        setCategory([
-            ...category, {text: categoryText, id: Math.random() * 1000}
-        ]);
-        setCategoryText("");
-        setError("");
-        setIsOpen(false);     
-    } else {
-        setError("Please enter a name");
-    }
-};
+const AddCategory = (
+    {
+        open, 
+        setIsOpen, 
+        difficultyArray,
+        courseArray, 
+        workloadArray, 
+        profRateArray, 
+        facultyArray, 
+        setCourseName,
+        setEntriesArray,
+        entriesArray,
+        courseName,
+        courseNumber,
+        setCourseNumber,
+        professor,
+        setProfessor,
+        difficulty,
+        setDifficulty,
+        workload,
+        setWorkload,
+        profRating,
+        setProfRating,
+        comments,
+        setComments,
+        faculty,
+        setFaculty,
+        courseLike,
+        setCourseLike,
+        coursesArray,
+        setCoursesArray,
+        children
+    }) => {
 
 if(!open) return null
   return (
@@ -29,12 +41,36 @@ if(!open) return null
         <div className="add-category-wrapper vertical-center">
             <div className="add-category modal">
                 <h3 className="modal-title">Post a review</h3>
-                <NewPostForm difficultyArray={difficultyArray} courseArray={courseArray} workloadArray={workloadArray} profRateArray={profRateArray} facultyArray={facultyArray}/>
-                <p className="error-msg">{error}</p>
-                <div className="modal-btn-container">
-                    <button className="btn modal-btn btn-outline" onClick={onCancel}> Cancel </button>
-                    <button className="btn modal-btn" onClick={newCategoryHandler}> Done </button>
-                </div> 
+                <NewPostForm 
+                    difficultyArray={difficultyArray} 
+                    courseArray={courseArray} 
+                    workloadArray={workloadArray} 
+                    profRateArray={profRateArray} 
+                    facultyArray={facultyArray}
+                    setCourseName={setCourseName}
+                    setEntriesArray={setEntriesArray}
+                    setIsOpen = {setIsOpen}
+                    entriesArray={entriesArray}
+                    courseName={courseName}
+                    courseNumber={courseNumber}
+                    setCourseNumber={setCourseNumber}
+                    professor={professor}
+                    setProfessor={setProfessor}
+                    difficulty={difficulty}
+                    setDifficulty={setDifficulty}
+                    workload={workload}
+                    setWorkload={setWorkload}
+                    profRating={profRating}
+                    setProfRating={setProfRating}
+                    comments={comments}
+                    setComments={setComments}
+                    faculty={faculty}
+                    setFaculty={setFaculty}
+                    courseLike={courseLike}
+                    setCourseLike={setCourseLike}
+                    coursesArray={coursesArray}
+                    setCoursesArray={setCoursesArray}
+                />
             </div>
         </div>
     </div>
