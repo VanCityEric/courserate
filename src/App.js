@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Dashboard from './components/Dashboard'
+import Nav from './components/Nav'
 
-function App() {
+
+const App = () => {
+const[dashboardHeader, setDashboardHeader] = useState("Welcome to CourseRate");
+const courseArray = ["ACMA", "ALS", "APMA", "ARAB", "ARCH", "BISC", "BPK", "BUS", "CHEM", "CHIN", "COGS", "CMPT", "CA", "CRIM"];
+const difficultyArray = ["Very easy", "Easy", "Normal", "Hard", "Very hard"];
+const workloadArray = ["Very light", "Light", "Normal", "Heavy", "Very heavy"];
+const profRateArray = ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"];
+const facultyArray = ["Applied Sciences", "Arts and Social Sciences", "Beedie School of Business", "Communication, Arts and Technology", "Education", "Environment", "Health Sciences", "Science"];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+         <Nav setDashboardHeader = {setDashboardHeader}  courseArray={courseArray} difficultyArray={difficultyArray} workloadArray={workloadArray} profRateArray={profRateArray} facultyArray={facultyArray}/>
+        <Dashboard dashboardHeader = {dashboardHeader}/>
+    </React.Fragment>
+  )
 }
 
-export default App;
+export default App
