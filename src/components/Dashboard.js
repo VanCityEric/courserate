@@ -3,7 +3,8 @@ import DashboardHeader from './DashboardHeader'
 import SearchForm from './SearchForm'
 import Entries from './Entries'
 
-const Dashboard = ({dashboardHeader, entriesArray}) => {
+const Dashboard = ({dashboardHeader, entriesArray, averagesArray}) => {
+
   return (
     <React.Fragment>
        <div className="dashboard-container">
@@ -24,6 +25,8 @@ const Dashboard = ({dashboardHeader, entriesArray}) => {
                     comments={entry.comment}
                     faculty={entry.fac}
                     courseLike={entry.like}
+                    entriesArray={entriesArray}
+                    averagesArray={averagesArray}
                   />
                 ))}
               </div>

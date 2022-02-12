@@ -8,7 +8,7 @@ const[dashboardHeader, setDashboardHeader] = useState("Welcome to CourseRate");
 const courseArray = ["ACMA", "ALS", "APMA", "ARAB", "ARCH", "BISC", "BPK", "BUS", "CHEM", "CHIN", "COGS", "CMPT", "CA", "CRIM"];
 const difficultyArray = ["Very easy", "Easy", "Normal", "Hard", "Very hard"];
 const workloadArray = ["Very light", "Light", "Normal", "Heavy", "Very heavy"];
-const profRateArray = ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"];
+const profRateArray = ["1", "2", "3", "4", "5"];
 const facultyArray = ["Applied Sciences", "Arts and Social Sciences", "Beedie School of Business", "Communication, Arts and Technology", "Education", "Environment", "Health Sciences", "Science"];
 
 const[entriesArray, setEntriesArray] = useState([]);
@@ -22,6 +22,7 @@ const[comments, setComments] = useState("");
 const[faculty, setFaculty] = useState("");
 const[courseLike, setCourseLike] = useState("");
 const [coursesArray, setCoursesArray] = useState([]);
+const [averagesArray, setAveragesArray] = useState([]);
 
   return (
     <React.Fragment>
@@ -54,13 +55,15 @@ const [coursesArray, setCoursesArray] = useState([]);
           setCourseLike={setCourseLike}
           coursesArray={coursesArray}
           setCoursesArray={setCoursesArray}
-          
+          averagesArray = {averagesArray}
+          setAveragesArray={setAveragesArray}
         />
         <Dashboard 
           dashboardHeader = {dashboardHeader} 
           setEntriesArray={setEntriesArray} 
           entriesArray={entriesArray} 
           courseName={courseName}
+          averagesArray={averagesArray}
         
         />
     </React.Fragment>

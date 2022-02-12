@@ -32,6 +32,8 @@ const AddCategory = (
         setCourseLike,
         coursesArray,
         setCoursesArray,
+        averagesArray,
+        setAveragesArray,
         children
     }) => {
 
@@ -70,6 +72,8 @@ if(!open) return null
                     setCourseLike={setCourseLike}
                     coursesArray={coursesArray}
                     setCoursesArray={setCoursesArray}
+                    averagesArray = {averagesArray}
+                    setAveragesArray={setAveragesArray}
                 />
             </div>
         </div>

@@ -32,7 +32,9 @@ const Nav = (
     courseLike,
     setCourseLike,
     coursesArray,
-    setCoursesArray
+    setCoursesArray,
+    averagesArray,
+    setAveragesArray
   }
   ) => {
 const[isOpen, setIsOpen ] = useState(false);
@@ -80,6 +82,8 @@ const[isOpen, setIsOpen ] = useState(false);
       setCourseLike={setCourseLike}
       coursesArray={coursesArray}
       setCoursesArray={setCoursesArray}
+      averagesArray = {averagesArray}
+      setAveragesArray={setAveragesArray}
       />     
     </React.Fragment>
   )
