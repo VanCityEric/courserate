@@ -3,14 +3,21 @@ import DashboardHeader from './DashboardHeader'
 import SearchForm from './SearchForm'
 import Entries from './Entries'
 
-const Dashboard = ({dashboardHeader, entriesArray, averagesArray}) => {
+const Dashboard = ({dashboardHeader, entriesArray, averagesArray, searchArray, setDashboardHeader, setResultsHeader, currentSearchValue, setCurrentSearchValue}) => {
 
   return (
     <React.Fragment>
-       <div className="dashboard-container">
-          <div className="dashboard-wrapper">
+       <div className="dashboard-container container">
+          <div className="dashboard-wrapper wrapper">
             <DashboardHeader dashboardHeader={dashboardHeader}/>
-            <SearchForm entriesArray={entriesArray}/>
+            <SearchForm 
+              averagesArray={averagesArray}
+              searchArray={searchArray}  
+              setDashboardHeader = {setDashboardHeader}  
+              setResultsHeader={setResultsHeader}
+              currentSearchValue={currentSearchValue}
+              setCurrentSearchValue={setCurrentSearchValue}
+              />
             <div className="recent-container">
               <h2 className="recent-text">Recent Reviews</h2>
               <div className="recent-entries-container">

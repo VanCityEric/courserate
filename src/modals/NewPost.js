@@ -34,6 +34,8 @@ const AddCategory = (
         setCoursesArray,
         averagesArray,
         setAveragesArray,
+        searchArray,
+        setSearchArray,
         children
     }) => {
 
@@ -74,6 +76,9 @@ if(!open) return null
                     setCoursesArray={setCoursesArray}
                     averagesArray = {averagesArray}
                     setAveragesArray={setAveragesArray}
+                    searchArray={searchArray}
+                    setSearchArray={setSearchArray}
+                    
                 />
             </div>
         </div>

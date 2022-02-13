@@ -30,18 +30,18 @@ const NewPostForm = (
         setCourseLike,
         averagesArray,
         setAveragesArray,
+        searchArray,
+        setSearchArray,
         coursesArray,
         setCoursesArray
 
     }) => {
     const[error, setError] = useState("");
-    const[tag1, setTag1] = useState("");
 
     const onCancel = () => {
         setError("");
         setIsOpen(false);     
     }    
-
     const courseLikeHandler = (e) => {
         if(e.target.value === "1 - avoid it all costs!") {
             setCourseLike(1);
@@ -60,6 +60,18 @@ const NewPostForm = (
 
         if(courseName !== "" && courseLike !== "" && courseNumber !== "" && professor !== "" && difficulty !== "" && workload !== "" && profRating !== "" && faculty !== "") {
 
+            if(searchArray.some(searchArray => searchArray.course === courseName)) {
+                setError("That already exists.");
+            } else {
+                setSearchArray([
+                    ...searchArray,
+                    {
+                        course: courseName,
+                        courseTitle: courseName + " " + courseNumber, 
+                    }
+                ]);
+            }
+
             if(averagesArray.some(averagesArray => averagesArray.course === courseName && averagesArray.number === courseNumber && averagesArray.prof === professor)) {
                 let index = averagesArray.findIndex(entry => entry.course === courseName && entry.number === courseNumber && entry.prof === professor);
                 averagesArray[index].repeat++;
@@ -73,7 +85,8 @@ const NewPostForm = (
                     number: courseNumber,
                     average: courseLike,
                     repeat: 1,
-                    prof: professor
+                    prof: professor,
+                    title: courseName + " " + courseNumber
                     }
                 ]);
             }

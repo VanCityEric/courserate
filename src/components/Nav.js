@@ -34,9 +34,12 @@ const Nav = (
     coursesArray,
     setCoursesArray,
     averagesArray,
-    setAveragesArray
+    setAveragesArray,
+    searchArray,
+    setSearchArray,
   }
   ) => {
+
 const[isOpen, setIsOpen ] = useState(false);
 
 
@@ -84,6 +87,8 @@ const[isOpen, setIsOpen ] = useState(false);
       setCoursesArray={setCoursesArray}
       averagesArray = {averagesArray}
       setAveragesArray={setAveragesArray}
+      searchArray={searchArray}
+      setSearchArray={setSearchArray}
       />     
     </React.Fragment>
   )
