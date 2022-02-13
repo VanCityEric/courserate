@@ -14,13 +14,6 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   console.log(currentSearchValue);
   console.log(index);
 
-  searchArray.filter(entry => {
-    if(query !== '' && entry.courseTitle.toString().toLowerCase().includes(currentSearchValue.toLowerCase())) {
-      className = " show-search-dropdown";
-      return null;
-    } 
-  })
-
   const queryHandler = (e) => {
     currentSearchValue = e.target.value;
     setQuery(e.target.value);
