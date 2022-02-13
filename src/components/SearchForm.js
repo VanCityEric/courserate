@@ -40,9 +40,9 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   const navigate = useNavigate();
   const searchHandler = (e) => {
     e.preventDefault();
-    if(searchArray.some(searchArray => searchArray.courseTitle.toString().toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase())) {
-      setResultsHeader(currentSearchValue.toUpperCase());
-      setCurrentSearchValue(query.toUpperCase());
+    if(searchArray.some(searchArray => searchArray.courseTitle.toString().toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase())) {
+      setResultsHeader(currentSearchValue.toString().toUpperCase());
+      setCurrentSearchValue(query.toString().toUpperCase());
       setSearchFound("search found");
       navigate("/NewPage");
     } else {

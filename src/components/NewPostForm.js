@@ -68,6 +68,7 @@ const NewPostForm = (
                     {
                         course: courseName,
                         courseTitle: courseName + " " + courseNumber, 
+                        number: courseNumber
                     }
                 ]);
             }
