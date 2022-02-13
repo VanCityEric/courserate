@@ -15,7 +15,7 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   console.log(index);
 
   searchArray.filter(entry => {
-    if(query !== '' && entry.courseTitle.toLowerCase().includes(currentSearchValue.toLowerCase())) {
+    if(query !== '' && entry.courseTitle.toString().toLowerCase().includes(currentSearchValue.toLowerCase())) {
       className = " show-search-dropdown";
       return null;
     } 
@@ -47,7 +47,7 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   const navigate = useNavigate();
   const searchHandler = (e) => {
     e.preventDefault();
-    if(searchArray.some(searchArray => searchArray.courseTitle.toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase())) {
+    if(searchArray.some(searchArray => searchArray.courseTitle.toString().toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase())) {
       setResultsHeader(currentSearchValue.toUpperCase());
       setCurrentSearchValue(query.toUpperCase());
       setSearchFound("search found");
