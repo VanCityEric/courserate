@@ -74,7 +74,10 @@ const getLocalEntries = () => {
   }, [])
 
   React.useEffect(() => {
-    localStorage.setItem('currentSearchValue', JSON.stringify(currentSearchValue));
+    const stateInfo = JSON.stringify(currentSearchValue);
+    if(stateInfo) {
+      localStorage.setItem('currentSearchValue', stateInfo);
+    }
   })
 
   return (
@@ -116,7 +119,7 @@ const getLocalEntries = () => {
         />
         <Router>
           <Routes>
-            <Route path="/Dashboard" element={
+            <Route path="/" element={
             <Dashboard  dashboardHeader = {dashboardHeader} 
               setDashboardHeader={setDashboardHeader}
               setEntriesArray={setEntriesArray} 
@@ -130,7 +133,7 @@ const getLocalEntries = () => {
               />
             }
             />
-            <Route path="/NewPage" element={
+            <Route path="/newpage" element={
             <ResultsPage 
               dashboardHeader={dashboardHeader} 
               resultsHeader={resultsHeader} 

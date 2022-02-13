@@ -9,7 +9,7 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   const [searchFound, setSearchFound] = useState("");
   const [index, setIndex] = useState();
   let className = "search-dropdown-container";
-  setCurrentSearchValue(query.toUpperCase());
+  
   console.log(query);
   console.log(currentSearchValue);
   console.log(index);
@@ -44,15 +44,12 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
     console.log(active);
   }
 
-  const onMouseOverHandler = () => {
-    setActive(-1);
-  }
-
   const navigate = useNavigate();
   const searchHandler = (e) => {
     e.preventDefault();
     if(searchArray.some(searchArray => searchArray.courseTitle.toLowerCase() === query.toLowerCase()) || searchArray.some(searchArray => searchArray.course.toLowerCase() === query.toLowerCase())) {
       setResultsHeader(currentSearchValue.toUpperCase());
+      setCurrentSearchValue(query.toUpperCase());
       setSearchFound("search found");
       navigate("/NewPage");
     } else {
