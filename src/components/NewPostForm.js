@@ -104,12 +104,11 @@ const NewPostForm = (
                     comment: comments,
                     fac: faculty,
                     like: courseLike,
-                    tag1: "",
-                    tag2: "",
-                    tag3: "",
+                    title: courseName + " " + courseNumber,
                     year: date.getFullYear(),
                     day: date.getDate(),
                     month: date.getMonth(),
+                    time: date.getTime(),
                     id: Math.random() * 1000
                 }
             ]);

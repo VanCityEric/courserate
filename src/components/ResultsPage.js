@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ResultsHeader from './ResultsHeader'
 import SearchEntries from './SearchEntries'
+import { useHistory } from 'react-router'
 
 const ResultsPage = ({dashboardHeader, resultsHeader, currentSearchValue, entriesArray, averagesArray, searchArray, setSearchName, searchName, setCurrentSearchValue}) => {
-
+  
   const { id } = useParams();
 
-  // document.title = `Search results for ${(searchName).toString().toUpperCase()}`;
+  document.title = `Search results for ${(searchName).toString().toUpperCase()}`;
 
   return (
     

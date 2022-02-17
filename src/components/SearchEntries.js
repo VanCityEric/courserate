@@ -20,7 +20,7 @@ const SearchEntries = ({averagesArray, entry, searchArray, setSearchName}) => {
 const navigate = useNavigate();
 const searchClickHandler = (e) => {
     e.preventDefault();
-    navigate(`/course/${entry.course}`);
+    navigate(`/course/${(entry.title)}`);
 }
 
   return (

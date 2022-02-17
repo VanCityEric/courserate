@@ -135,6 +135,7 @@ const getLocalEntries = () => {
           setAveragesArray={setAveragesArray}
           searchArray={searchArray}
           setSearchArray={setSearchArray}
+  
    
         />
         <div className="content">
@@ -170,7 +171,7 @@ const getLocalEntries = () => {
               />}
             />
               <Route exact path={'/course/:id'} element={
-                <ResultsPage />
+                <CoursePage />
             }
             />
             </Routes>

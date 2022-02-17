@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Entries = (
   {
@@ -11,6 +12,11 @@ const Entries = (
     comments,
     faculty,
     courseLike,
+    day,
+    month,
+    year,
+    time,
+    title,
     averagesArray,
     entriesArray,
   }) => {
@@ -32,6 +38,11 @@ const Entries = (
     className += ' green';
   }
 
+  const navigate = useNavigate();
+  const courseClickHandler = (e) => {
+    e.preventDefault();
+    navigate(`/course/${title}`);
+  }
 
   return (
     <div className="recent-entries entries row section-wrapper">
@@ -39,7 +50,7 @@ const Entries = (
       <div className="review-like-section col1"> 
         <p className="average-rating">CLASS SCORE</p>
         <div className={className}>{userScore}</div>
-        <p className="average-rating margin-top">PROF SCORE</p>
+        <p className="average-rating margin-top">PROF SCORE </p>
         <div className="thumbs">{profScore}</div>
       </div>
 
@@ -48,10 +59,10 @@ const Entries = (
       <div className="review-top-row">
         <div className="row">
           <div className="review-course-name col1">
-            <h2>{courseName} {courseNumber}</h2>
+            <h2 onClick={(e) => courseClickHandler(e)}>{courseName} {courseNumber}</h2>
           </div>
           <div className="review-date col2">
-            <p className="date">{monthNames[monthIndex]} {entriesArray[index].day}, {entriesArray[index].year}</p> 
+            <p className="date">{monthNames[month]} {day}, {year}</p> 
           </div>
         </div>
         <div className="row review-middle-row">

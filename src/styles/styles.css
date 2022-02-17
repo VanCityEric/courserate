@@ -301,7 +301,6 @@ textarea {
 
 .entries {
     border: 1px solid rgb(221, 221, 221);
-    width: fit-content;
     border-radius: 10px;
     margin: 0 auto;
     margin-top: 40px;
@@ -379,7 +378,7 @@ textarea {
 }
 
 .recent-entries  {
-    width: 900px!important;
+    width: 1000px!important;
 }
 
 .recent-entries .row {
@@ -404,9 +403,15 @@ textarea {
     margin-top: -10px!important;
 }
 
+.recent-entries h2:hover {
+    cursor: pointer;
+    color: rgb(20, 149, 255);
+}
+
 .review-text-section {
     padding: 35px; 
-    width: 730px;
+    width: 834px;
+ 
 }
 
 .review-like-section {
@@ -430,8 +435,7 @@ textarea {
 }
 
 .bottom-row-container {
-  
-    height: 100px;
+    height: 70px;
     position: relative;
 }
 
@@ -444,8 +448,7 @@ textarea {
 }
 
 .review-middle-row {
-
-    height: 200px
+    height: 200px;
 }
 
 
