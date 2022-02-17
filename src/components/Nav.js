@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../logo.png'
 import NewPost from '../modals/NewPost'
+import { useNavigate } from "react-router-dom";
 
 
 const Nav = (
@@ -40,16 +41,23 @@ const Nav = (
   }
   ) => {
 
-const[isOpen, setIsOpen ] = useState(false);
+const[isOpen, setIsOpen] = useState(false);
 
+const navigate = useNavigate();
+const homeHandler = () => {
+  navigate("/");
+}
 
   return (
     <React.Fragment>
         <div className="nav-container">
-            <img className="logo" src={logo} alt="logo"/>
-            <nav>
+          <nav>
+            <div>
+              <img className="logo" src={logo} alt="logo"/>
+            </div>
+
                 <ul className="nav-links">
-                    <li onClick={()=>setDashboardHeader('Home')}>Home</li>
+                    <li onClick={() => homeHandler() }>Home</li>
                     <li onClick={()=>setDashboardHeader('Login')}>Login</li>
                     <button className="btn post-btn" onClick={() => setIsOpen(true)}>Post a Review</button>
                 </ul>
@@ -89,7 +97,7 @@ const[isOpen, setIsOpen ] = useState(false);
       setAveragesArray={setAveragesArray}
       searchArray={searchArray}
       setSearchArray={setSearchArray}
-      />     
+      />    
     </React.Fragment>
   )
 }

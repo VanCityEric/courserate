@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import NewPage from './ResultsPage';
 
 
-const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentSearchValue, setCurrentSearchValue}) => {
+const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentSearchValue, setCurrentSearchValue, searchName, setSearchName}) => {
   const [query, setQuery] = useState("");
   const [searchFound, setSearchFound] = useState("");
   const [index, setIndex] = useState();
@@ -15,27 +15,17 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
   console.log(index);
 
   const queryHandler = (e) => {
-    currentSearchValue = e.target.value;
+    setCurrentSearchValue(e.target.value)
     setQuery(e.target.value);
+    setSearchName((e.target.value))
     console.log(query);
-   
-  }
-  const [active, setActive] = useState(0);
 
-  const keyDownHandler = (e) => {
-    if(e.key === "ArrowUp") {
-      setActive(active - 1);
-      if(active === -1) {
-        setActive(active);
-      }
-    } else if (e.key === "ArrowDown") {
-      setActive(active + 1);
-      if(active > index - 1) {
-        setActive(active);
-      }
+    if (e.target.value === "") {
+      setSearchFound("");
     }
-    console.log(active);
   }
+
+  const [active, setActive] = useState(0);
 
   const navigate = useNavigate();
   const searchHandler = (e) => {
@@ -45,40 +35,22 @@ const SearchForm = ({searchArray, setDashboardHeader, setResultsHeader, currentS
     || searchArray.some(searchArray => searchArray.number === query)
     ) {
       setResultsHeader(currentSearchValue);
-      setCurrentSearchValue(query.toString().toUpperCase());
       setSearchFound("search found");
-      navigate("/NewPage");
+      navigate(`/search/${(searchName)}`);
     } else {
-      setSearchFound("search not found")
-    }   
+      setSearchFound("Sorry, course not found. Add a course by submitting a review.")
+    }
+
+   
   }
   return (
     <div className="dashboard-search">
         <form>
         <label for="search-bar">Search for a course</label>
-        <input onChange={queryHandler} onKeyDown={keyDownHandler} id="search-bar" className='input' placeholder='e.g. "MACM 201"'></input>
+        <input onChange={queryHandler}  id="search-bar" className='input' placeholder='e.g. "MACM 201", "MACM", or "201"'></input>
         <button onClick={searchHandler} class="search-button btn">Search</button>
         <p className="search-error">{searchFound}</p>
-          {/* <div className={className} onMouseOver={onMouseOverHandler}>
-            {
-              searchArray.filter((entry) => {
-                if(query === '' || !(entry.courseTitle.toLowerCase().includes(query.toLowerCase()))) {
-                  return null;
-                } else if (entry.courseTitle.toLowerCase().includes(query.toLowerCase())) {
-                  return entry;
-                } 
-                return null;
-              }).map((entry, i) => 
-                    <SearchDropdown 
-                      entry={entry}  
-                      setDashboardHeader = {setDashboardHeader} 
-                      active={active} 
-                      i={i} 
-                      setIndex={setIndex}
-                      searchArray={searchArray}
-                    />    
-            )}
-          </div> */}
+  
         </form>  
 
     </div>

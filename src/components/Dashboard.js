@@ -3,7 +3,7 @@ import DashboardHeader from './DashboardHeader'
 import SearchForm from './SearchForm'
 import Entries from './Entries'
 
-const Dashboard = ({dashboardHeader, entriesArray, averagesArray, searchArray, setDashboardHeader, setResultsHeader, currentSearchValue, setCurrentSearchValue}) => {
+const Dashboard = ({dashboardHeader, entriesArray, averagesArray, searchArray, setDashboardHeader, setResultsHeader, currentSearchValue, searchName, setSearchName, setCurrentSearchValue}) => {
 
   return (
     <React.Fragment>
@@ -17,6 +17,8 @@ const Dashboard = ({dashboardHeader, entriesArray, averagesArray, searchArray, s
               setResultsHeader={setResultsHeader}
               currentSearchValue={currentSearchValue}
               setCurrentSearchValue={setCurrentSearchValue}
+              setSearchName={setSearchName}
+              searchName={searchName}
               />
             <div className="recent-container">
               <h2 className="recent-text">Recent Reviews</h2>

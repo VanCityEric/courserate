@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import NewPage from './components/ResultsPage';
 import ResultsPage from './components/ResultsPage';
+import CoursePage from './components/CoursePage';
 
 
 
@@ -35,7 +36,7 @@ const[courseLike, setCourseLike] = useState("");
 const[coursesArray, setCoursesArray] = useState([]);
 const[averagesArray, setAveragesArray] = useState([]);
 const[searchArray, setSearchArray] = useState([]);
-
+const[searchName, setSearchName] = useState();
 
 useEffect(() => {
   getLocalEntries();
@@ -80,8 +81,27 @@ const getLocalEntries = () => {
     }
   })
 
+
+  React.useEffect(() => {
+    const data = localStorage.getItem('searchName');
+    if (data) {
+      setSearchName(JSON.parse(data));
+    }
+  }, [])
+
+  React.useEffect(() => {
+    const stateInfo = JSON.stringify(searchName);
+    if(stateInfo) {
+      localStorage.setItem('searchName', stateInfo);
+    }
+  })
+
+
+  console.log(searchName);
+
   return (
     <React.Fragment>
+      <Router>
        <Nav 
           setDashboardHeader = {setDashboardHeader} 
           courseArray={courseArray} 
@@ -117,34 +137,47 @@ const getLocalEntries = () => {
           setSearchArray={setSearchArray}
    
         />
-        <Router>
+        <div className="content">
+    
           <Routes>
             <Route path="/" element={
-            <Dashboard  dashboardHeader = {dashboardHeader} 
-              setDashboardHeader={setDashboardHeader}
-              setEntriesArray={setEntriesArray} 
-              entriesArray={entriesArray} 
-              courseName={courseName}
-              averagesArray={averagesArray}
-              searchArray={searchArray}
-              setResultsHeader={setResultsHeader}
-              currentSearchValue={currentSearchValue}
-              setCurrentSearchValue={setCurrentSearchValue}
-              />
+              <Dashboard  dashboardHeader = {dashboardHeader} 
+                setDashboardHeader={setDashboardHeader}
+                setEntriesArray={setEntriesArray} 
+                entriesArray={entriesArray} 
+                courseName={courseName}
+                averagesArray={averagesArray}
+                searchArray={searchArray}
+                setResultsHeader={setResultsHeader}
+                currentSearchValue={currentSearchValue}
+                setCurrentSearchValue={setCurrentSearchValue}
+                setSearchName={setSearchName}
+                searchName={searchName}
+                />
             }
             />
-            <Route path="/newpage" element={
-            <ResultsPage 
-              dashboardHeader={dashboardHeader} 
-              resultsHeader={resultsHeader} 
-              currentSearchValue={currentSearchValue}
-              entriesArray = {entriesArray}
-              searchArray = {searchArray}
-              averagesArray = {averagesArray}
-            />}
+            <Route exact path={'/search/:id'} element={
+              <ResultsPage 
+                dashboardHeader={dashboardHeader} 
+                resultsHeader={resultsHeader} 
+                currentSearchValue={currentSearchValue}
+                entriesArray = {entriesArray}
+                searchArray = {searchArray}
+                averagesArray = {averagesArray}
+                setSearchName = {setSearchName}
+                searchName = {searchName}
+                setCurrentSearchValue = {setCurrentSearchValue}
+              />}
+            />
+              <Route exact path={'/course/:id'} element={
+                <ResultsPage />
+            }
             />
             </Routes>
+            </div>
       </Router>
+      
+      
     </React.Fragment>
   
   )

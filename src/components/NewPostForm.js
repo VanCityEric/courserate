@@ -175,7 +175,7 @@ const NewPostForm = (
                         </select>
                 </div> 
                 <div className="col3">
-                    <label for="prof-rate">Professor rating</label>
+                    <label for="prof-rate">*Professor rating</label>
                         <select onChange={(e) => setProfRating(Number(e.target.value))} id="prof-rate">
                             <option>Rate (1-5)</option>
                             {profRateArray.map((profRate) => (
@@ -190,7 +190,7 @@ const NewPostForm = (
             </div> 
             <div className="row">  
                 <div className="col1">
-                    <label for="faculty">Your faculty</label>
+                    <label for="faculty">*Your faculty</label>
                         <select onChange={(e) => setFaculty(e.target.value)} id="faculty" class="faculty">
                             <option>Choose faculty</option>
                             {facultyArray.map((faculty) => (

@@ -8,7 +8,7 @@ const SearchDropdown = ({entry, setDashboardHeader, active, i, setIndex, searchA
   setIndex(i);
 
   return (
-    <div onClick={pageHandler} className={active === i ? 'search-dropdown active' : 'search-dropdown no-active'}>
+    <div>
         <ul>
            <li>{entry.courseTitle}</li>
         </ul>
