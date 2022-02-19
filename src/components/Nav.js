@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from '../logo.png'
 import NewPost from '../modals/NewPost'
 import { useNavigate } from "react-router-dom";
+import SearchForm from './SearchForm';
 
 
 const Nav = (
@@ -54,8 +55,8 @@ const homeHandler = () => {
           <nav>
             <div>
               <img className="logo" src={logo} alt="logo"/>
-            </div>
-
+          </div>
+        
                 <ul className="nav-links">
                     <li onClick={() => homeHandler() }>Home</li>
                     <li onClick={()=>setDashboardHeader('Login')}>Login</li>

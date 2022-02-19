@@ -11,7 +11,7 @@ const SearchEntries = ({averagesArray, entry, searchArray, setSearchName}) => {
     let className = 'average-circle';
     if(averageNum < 3) {
         className += ' red';
-      } else if (averageNum == 3) {
+      } else if (averageNum === 3) {
         className += ' yellow';
       } else if (averageNum > 3) {
         className += ' green';
@@ -38,7 +38,6 @@ const searchClickHandler = (e) => {
                  <div className='col1'>
                     <div className="vertical">
                         <h2 className="search-entry-title">{entry.course} {entry.number}</h2>
-                        <p><span className="bold">Professor: </span>{entry.prof}</p>
                     </div>
                 </div>
                
