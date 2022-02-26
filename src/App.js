@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import Nav from "./components/Nav";
+import PostSuccess from "./modals/PostSuccess";
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,6 +13,7 @@ import ResultsPage from "./components/ResultsPage";
 import CoursePage from "./components/CoursePage";
 
 const App = () => {
+ 
   const [dashboardHeader, setDashboardHeader] = useState(
     "Welcome to CourseRate"
   );
@@ -32,7 +34,77 @@ const App = () => {
     "COGS",
     "CMPT",
     "CA",
-    "CRIM"
+    "CRIM",
+    "DATA",
+    "DIAL",
+    "DMED",
+    "EASC",
+    "ECO",
+    "ECON",
+    "EDUC",
+    "EDPR",
+    "ETEC",
+    "ENSC",
+    "ENGL",
+    "ENV",
+    "EVSC",
+    "FASS",
+    "FAL",
+    "FAN",
+    "FREN",
+    "GSWS",
+    "GS",
+    "GEOG",
+    "GERM",
+    "GERO",
+    "GA",
+    "GRK",
+    "HSCI",
+    "HIST",
+    "HUM",
+    "INLG",
+    "INDG",
+    "INS",
+    "IAT",
+    "IS",
+    "ITAL",
+    "JAPN",
+    "LBST",
+    "LANG",
+    "LAS",
+    "LBRL",
+    "LS",
+    "LING",
+    "MTEC",
+    "MASC",
+    "MATH",
+    "MACM",
+    "MSE",
+    "MBB",
+    "NEUR",
+    "NUSC",
+    "ONC",
+    "PERS",
+    "PHIL",
+    "PHYS",
+    "PLAN",
+    "POL",
+    "PSYC",
+    "PLCY",
+    "PUB",
+    "PUNJ",
+    "REM",
+    "SCI",
+    "SDA",
+    "SA",
+    "SPAN",
+    "STAT",
+    "SD",
+    "SEE",
+    "TEKX",
+    "TRSS",
+    "URB",
+    "WL"
   ];
   const difficultyArray = [
     "1 - Very easy",
@@ -61,52 +133,43 @@ const App = () => {
   ];
 
   const [entriesArray, setEntriesArray] = useState([]);
-  const [courseName, setCourseName] = useState("");
-  const [courseNumber, setCourseNumber] = useState("");
-  const [professor, setProfessor] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [workload, setWorkload] = useState("");
-  const [profRating, setProfRating] = useState("");
-  const [comments, setComments] = useState("");
-  const [faculty, setFaculty] = useState("");
-  const [courseLike, setCourseLike] = useState("");
   const [coursesArray, setCoursesArray] = useState([]);
   const [averagesArray, setAveragesArray] = useState([]);
   const [searchArray, setSearchArray] = useState([]);
   const [searchName, setSearchName] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFilledOpen, setIsFilledOpen] = useState(false);
+  const [filledForm, setFilledForm] = useState(false);
+  const [currentPageName, setCurrentPageName] = useState("");
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  console.log(filledForm);
 
-  useEffect(() => {
-    getLocalEntries();
-  }, []);
-
-  useEffect(() => {
-    saveLocalEntries();
-  }, [entriesArray]);
-
-  const saveLocalEntries = () => {
-    localStorage.setItem("entriesArray", JSON.stringify(entriesArray));
-    localStorage.setItem("searchArray", JSON.stringify(searchArray));
-    localStorage.setItem("averagesArray", JSON.stringify(averagesArray));
-  };
-
-  const getLocalEntries = () => {
-    if (
-      localStorage.getItem("entriesArray") === null ||
-      localStorage.getItem("averagesArray") === null ||
-      localStorage.getItem("searchArray") === null
-    ) {
-      localStorage.setItem("entriesArray", JSON.stringify([]));
-      localStorage.setItem("searchArray", JSON.stringify([]));
-      localStorage.setItem("averagesArray", JSON.stringify([]));
-    } else {
-      let entriesLocal = JSON.parse(localStorage.getItem("entriesArray"));
-      setEntriesArray(entriesLocal);
-      let searchLocal = JSON.parse(localStorage.getItem("searchArray"));
-      setSearchArray(searchLocal);
-      let averagesLocal = JSON.parse(localStorage.getItem("averagesArray"));
-      setAveragesArray(averagesLocal);
+  const getEntries = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/get");
+      const jsonData = await response.json();
+      setEntriesArray(jsonData.rows);
+    } catch (err) {
+      console.log(err.message);
     }
   };
+  useEffect(() => {
+    getEntries();
+  }, []);
+
+  const getAverages = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/getAverages");
+      const jsonData = await response.json();
+      setAveragesArray(jsonData.rows);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  useEffect(() => {
+    getAverages();
+  }, []);
+
 
   React.useEffect(() => {
     const data = localStorage.getItem("currentSearchValue");
@@ -148,30 +211,18 @@ const App = () => {
           facultyArray={facultyArray}
           entriesArray={entriesArray}
           setEntriesArray={setEntriesArray}
-          courseName={courseName}
-          setCourseName={setCourseName}
-          courseNumber={courseNumber}
-          setCourseNumber={setCourseNumber}
-          professor={professor}
-          setProfessor={setProfessor}
-          difficulty={difficulty}
-          setDifficulty={setDifficulty}
-          workload={workload}
-          setWorkload={setWorkload}
-          profRating={profRating}
-          setProfRating={setProfRating}
-          comments={comments}
-          setComments={setComments}
-          faculty={faculty}
-          setFaculty={setFaculty}
-          courseLike={courseLike}
-          setCourseLike={setCourseLike}
           coursesArray={coursesArray}
           setCoursesArray={setCoursesArray}
           averagesArray={averagesArray}
           setAveragesArray={setAveragesArray}
           searchArray={searchArray}
           setSearchArray={setSearchArray}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          filledForm={filledForm}
+          setFilledForm={setFilledForm}
+          currentPageName={currentPageName}
+          setIsSuccessOpen={ setIsSuccessOpen}
         />
         <div className="content">
           <Routes>
@@ -183,7 +234,6 @@ const App = () => {
                   setDashboardHeader={setDashboardHeader}
                   setEntriesArray={setEntriesArray}
                   entriesArray={entriesArray}
-                  courseName={courseName}
                   averagesArray={averagesArray}
                   searchArray={searchArray}
                   setResultsHeader={setResultsHeader}
@@ -218,14 +268,26 @@ const App = () => {
                 <CoursePage
                   averagesArray={averagesArray}
                   entriesArray={entriesArray}
-                  difficulty={difficulty}
-                  courseName={courseName}
-                  courseNumber={courseNumber}
                   searchArray={searchArray}
+                  setIsOpen={setIsOpen}
+                  setFilledForm={setFilledForm}
+                  setCurrentPageName={setCurrentPageName}
+                  setIsFilledOpen={setIsFilledOpen}
+                  isFilledOpen={isFilledOpen}
+                  isOpen={isOpen}
+                  difficultyArray={difficultyArray}
+                  workloadArray={workloadArray}
+                  profRateArray={profRateArray}
+                  facultyArray={facultyArray}
+                  filledForm={filledForm}
+                  currentPageName={currentPageName}
+                  courseArray={courseArray}
+                  setIsSuccessOpen={ setIsSuccessOpen}
                 />
               }
             />
           </Routes>
+          <PostSuccess isSuccessOpen={isSuccessOpen} setIsSuccessOpen={ setIsSuccessOpen}/>
         </div>
       </Router>
     </React.Fragment>

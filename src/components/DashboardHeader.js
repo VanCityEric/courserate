@@ -6,11 +6,7 @@ const DashboardHeader = ({ dashboardHeader }) => {
       <div className="section-wrapper">
         <h2>{dashboardHeader}</h2>
         <p>
-          Lorem ipsum dolor sit amet. Id alias optio aut cupiditate accusamus
-          eos nulla praesentium. Sed molestias laborum et corrupti nisi et
-          suscipit tenetur non corrupti nemo. Sed nihil voluptates aut nisi
-          voluptatum qui distinctio facere in ipsum saepe. Ut quia voluptatem ut
-          eaque.
+          Browse reviews for your university courses or submit your own review to help other students choose the right course for them.
         </p>
         <br /><br />
         <form>

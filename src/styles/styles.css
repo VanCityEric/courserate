@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
 * {
-  font-family: "Sailec", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+.hide {
+  display: none;
+}
 .section-wrapper {
   width: 1000px;
   margin: 0 auto;
@@ -25,7 +30,7 @@
   background-color: rgb(12, 12, 12);
   padding: 0px 20px 0px 20px;
   z-index: 3000;
-  margin-top: -60px !important;
+  margin-top: -59px !important;
 }
 
 .nav-links {
@@ -52,9 +57,8 @@
 }
 
 .nav-links li:hover {
-  background-color: rgb(240, 240, 240);
   cursor: pointer;
-  color: black;
+  color: rgb(140, 0, 255)
 }
 
 .btn {
@@ -155,7 +159,7 @@
 }
 
 .content {
-  margin-top: 60px;
+  margin-top: 59px;
 }
 
 .select-university {
@@ -342,6 +346,10 @@ select:hover {
   width: 20em;
 }
 
+.course-grade {
+  width: 8em;
+}
+
 textarea {
   padding: 10px;
   border: 1px solid rgb(221, 221, 221);
@@ -460,16 +468,17 @@ textarea {
 .recent-entries h2 {
   font-size: 1.9em;
   margin-top: -10px !important;
+  transition: 0.3s ease;
 }
 
 .recent-entries h2:hover {
   cursor: pointer;
-  color: rgb(20, 149, 255);
+  color: rgb(140, 0, 255);
 }
 
 .review-text-section {
   padding: 35px;
-  width: 834px;
+  width: 867px;
 }
 
 .review-like-section {
@@ -491,7 +500,7 @@ textarea {
 }
 
 .bottom-row-container {
-  height: 60px;
+  height: 40px;
   position: relative;
 }
 
@@ -507,10 +516,23 @@ textarea {
   height: 200px;
 }
 
+.entry-tags {
+  /* padding: 2px 15px; */
+  border-radius: 100px;
+  margin-right: 20px;
+  color: rgb(17, 17, 17);
+  color:rgb(140, 0, 255);
+  /* border: 1px solid rgb(221, 221, 221); */
+  font-weight: 700;
+
+}
+
 .thumbs {
   width: fit-content;
-  padding: 15px;
-  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  border-radius: 100px;
   font-weight: 600;
   margin: 0 auto;
   font-size: 1.2em;
@@ -542,11 +564,11 @@ textarea {
 }
 
 .date {
-  font-weight: 500;
+  font-weight: 700;
+  
 }
 
 .tag {
-  width: fit-content;
   border: 1px solid rgb(221, 221, 221);
   padding: 5px 15px;
   font-size: 0.8em;
@@ -556,11 +578,29 @@ textarea {
   display: inline-block;
   margin-right: 10px;
   margin-top: 10px;
+  outline: none;
+}
+
+.tags-container {
+  width: 540px;
 }
 
 .tag:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.tag-btn {
+  font-size: 0.7em;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: rgb(226, 226, 226);
+  color: black;
+}
+
+.gray-background {
+  opacity: 0.1;
 }
 
 .hidden {
@@ -617,7 +657,7 @@ textarea {
 .coursepage-btn {
   margin-top: 50px;
   padding: 10px 20px;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 
 .course-page p {
@@ -649,9 +689,7 @@ textarea {
 }
 
 .progress-bar {
-  
   height: 100%;
-
 }
 .course-page h3 {
   margin-top: -6px;
@@ -663,4 +701,19 @@ textarea {
 
 .out-of-five {
   color: gray;
+}
+.cp-overall-rating {
+  text-align: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.cp-overall-rating h2 {
+  font-size: 1.8em !important;
+}
+
+.cp-overall-text {
+  height: 70px;
 }

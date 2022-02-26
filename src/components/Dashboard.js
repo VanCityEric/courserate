@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardHeader from "./DashboardHeader";
 import SearchForm from "./SearchForm";
 import Entries from "./Entries";
+import Tags from "./Tags";
 
 const Dashboard = ({
   dashboardHeader,
@@ -9,6 +10,7 @@ const Dashboard = ({
   averagesArray,
   searchArray,
   setResultsHeader,
+  setEntriesArray,
   currentSearchValue,
   searchName,
   setSearchName,
@@ -33,23 +35,27 @@ const Dashboard = ({
             <h2 className="recent-text">Recent Reviews</h2>
             <div className="recent-entries-container">
               {entriesArray
-                .sort((a, b) => (a.time < b.time ? 1 : -1))
+                .sort((a, b) => (a.course_time < b.course_time ? 1 : -1))
                 .map((entry) => (
                   <Entries
-                    courseName={entry.course}
-                    courseNumber={entry.number}
-                    professor={entry.prof}
-                    difficulty={entry.diff}
-                    workload={entry.work}
-                    profRating={entry.rateprof}
-                    comments={entry.comment}
-                    faculty={entry.fac}
-                    day={entry.day}
-                    month={entry.month}
-                    year={entry.year}
-                    time={entry.time}
-                    title={entry.title}
-                    courseLike={entry.like}
+                    courseName={entry.course_name}
+                    courseNumber={entry.course_number}
+                    professor={entry.course_prof}
+                    difficulty={entry.course_difficulty}
+                    workload={entry.course_workload}
+                    profRating={entry.course_prof_rating}
+                    comments={entry.course_comment}
+                    faculty={entry.course_faculty}
+                    day={entry.course_day}
+                    month={entry.course_month}
+                    year={entry.course_year}
+                    time={entry.course_time}
+                    title={entry.course_title}
+                    courseLike={entry.course_quality}
+                    grade={entry.course_grade}
+                    tag1={entry.course_tag1}
+                    tag2={entry.course_tag2}
+                    tag3={entry.course_tag3}
                     entriesArray={entriesArray}
                     averagesArray={averagesArray}
                   />

@@ -5,22 +5,22 @@ import { useNavigate } from "react-router-dom";
 
 
 const SearchEntries = ({averagesArray, entry, searchArray, setSearchName}) => {
-    let averageNum = entry.average;
-    let repeatedTimes = entry.repeat;
+    let averageNum = entry.average_avg;
+    let repeatedTimes = entry.average_repeat;
     let averageSum = (averageNum/repeatedTimes).toFixed(1);
     let className = 'average-circle';
-    if(averageNum < 3) {
+    if(averageSum < 3) {
         className += ' red';
-      } else if (averageNum === 3) {
+      } else if (averageSum === 3) {
         className += ' yellow';
-      } else if (averageNum > 3) {
+      } else if (averageSum > 3) {
         className += ' green';
       }
 
 const navigate = useNavigate();
 const searchClickHandler = (e) => {
     e.preventDefault();
-    navigate(`/course/${(entry.title)}`);
+    navigate(`/course/${(entry.average_title)}`);
 }
 
   return (
@@ -32,12 +32,12 @@ const searchClickHandler = (e) => {
                         <div className={className}>
                             {averageSum}
                         </div>
-                        <p class="num-of-ratings">{entry.repeat} review(s)</p>
+                        <p class="num-of-ratings">{entry.average_repeat} review(s)</p>
                     </div>
                 </div>
                  <div className='col1'>
                     <div className="vertical">
-                        <h2 className="search-entry-title">{entry.course} {entry.number}</h2>
+                        <h2 className="search-entry-title">{entry.average_name} {entry.average_number}</h2>
                     </div>
                 </div>
                

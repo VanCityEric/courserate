@@ -8,7 +8,8 @@ const SearchForm = ({
   currentSearchValue,
   setCurrentSearchValue,
   searchName,
-  setSearchName
+  setSearchName,
+  averagesArray
 }) => {
   const [query, setQuery] = useState("");
   const [searchFound, setSearchFound] = useState("");
@@ -38,16 +39,16 @@ const SearchForm = ({
     let input = document.getElementById("search-form");
     input[0].value = "";
     if (
-      searchArray.some(
-        (searchArray) =>
-          searchArray.courseTitle.toString().toLowerCase() ===
+      averagesArray.some(
+        (entry) =>
+          entry.average_title.toString().toLowerCase() ===
           query.toLowerCase()
       ) ||
-      searchArray.some(
-        (searchArray) =>
-          searchArray.course.toLowerCase() === query.toLowerCase()
+      averagesArray.some(
+        (entry) =>
+          entry.average_name.toLowerCase() === query.toLowerCase()
       ) ||
-      searchArray.some((searchArray) => searchArray.number === query)
+      averagesArray.some((entry) => entry.average_number.toString() === query.toString())
     ) {
       setSearchFound("");
       navigate(`/search/${searchName}`);

@@ -36,7 +36,7 @@ const ResultsPage = ({
         {averagesArray
           .filter((entry) => {
             if (
-              !entry.title
+              !entry.average_title
                 .toString()
                 .toLowerCase()
                 .includes(id.toString().toLowerCase())
