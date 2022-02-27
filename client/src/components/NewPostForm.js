@@ -89,7 +89,7 @@ const NewPostForm = ({
 
     e.preventDefault();
     try {
-      const body = { courseName, courseNumber };
+      const body = { courseName, courseNumber, courseProfessor };
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
