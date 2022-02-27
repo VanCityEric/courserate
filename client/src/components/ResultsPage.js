@@ -25,15 +25,16 @@ const ResultsPage = ({
       <div className="results-wrapper wrapper">
         <ResultsHeader currentSearchValue={id} />
         <SearchForm
-            averagesArray={averagesArray}
-            searchArray={searchArray}
-            currentSearchValue={currentSearchValue}
-            setCurrentSearchValue={setCurrentSearchValue}
-            setSearchName={setSearchName}
-            searchName={searchName}
-          />
+          averagesArray={averagesArray}
+          searchArray={searchArray}
+          currentSearchValue={currentSearchValue}
+          setCurrentSearchValue={setCurrentSearchValue}
+          setSearchName={setSearchName}
+          searchName={searchName}
+        />
 
         {averagesArray
+          .sort((a, b) => (a.average_title > b.average_title? 1 : -1))
           .filter((entry) => {
             if (
               !entry.average_title

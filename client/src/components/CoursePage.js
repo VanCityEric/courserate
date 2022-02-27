@@ -25,9 +25,7 @@ const CoursePage = ({
   const { id } = useParams();
   return (
     <React.Fragment>
-      {averagesArray
-        .sort((a, b) => (a.time < b.time ? 1 : -1))
-        .filter((entry) => {
+      {averagesArray.filter((entry) => {
           if (
             !entry.average_title
               .toString()

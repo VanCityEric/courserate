@@ -83,7 +83,6 @@ const NewPostFormFilled = ({
   let repeat = 1;
 
   const NewEntryHandler = async (e) => {
-    
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
@@ -91,7 +90,7 @@ const NewPostFormFilled = ({
 
     e.preventDefault();
     if (
-      courseQuality !== "" && 
+      courseQuality !== "" &&
       courseProfessor !== "" &&
       courseDifficulty !== "" &&
       courseWorkload !== "" &&
@@ -133,17 +132,17 @@ const NewPostFormFilled = ({
         //       titleCourse.toLowerCase()
         //   )
         // ) {
-          await fetch("/api/update", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-          });
+        await fetch("/api/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
         // } else {
-          await fetch("/api/averagesinsert", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-          });
+        await fetch("/api/averagesinsert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
         // }
       } catch (err) {
         console.error(err.message);
@@ -182,6 +181,11 @@ const NewPostFormFilled = ({
   } else if (filledForm === false) {
     courseNameValue = "Choose course";
   }
+
+  const courseCommentsHandler = (e) => {
+    let commentApostrophe = e.target.value.replace(/'/g, "''");
+    setCourseComments(commentApostrophe);
+  };
 
   return (
     <React.Fragment>
@@ -245,10 +249,7 @@ const NewPostFormFilled = ({
           </div>
           <div className="row">
             <label htmlFor="comment">Comments</label>
-            <textarea
-              onBlur={(e) => setCourseComments(e.target.value)}
-              rows="6"
-            ></textarea>
+            <textarea onBlur={courseCommentsHandler} rows="6"></textarea>
           </div>
           <div className="row tags-container">
             <label>

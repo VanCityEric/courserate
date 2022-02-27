@@ -29,6 +29,7 @@ const NewPostForm = ({
   const [courseFaculty, setCourseFaculty] = useState("");
   const [courseQuality, setCourseQuality] = useState(0);
 
+
   const onCancel = () => {
     setError("");
     setIsOpen(false);
@@ -78,6 +79,7 @@ const NewPostForm = ({
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
   let repeat = 1;
+  courseName.replace("'", "''");
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -181,6 +183,13 @@ const NewPostForm = ({
     courseNameValue = "Choose course";
   }
 
+  const courseCommentsHandler = e => {
+    let commentApostrophe = (e.target.value).replace(/'/g, "\'\'");
+    setCourseComments(commentApostrophe);
+  }
+
+  console.log(courseComments);
+
   return (
     <React.Fragment>
       <div className="new-post-container">
@@ -271,7 +280,7 @@ const NewPostForm = ({
           <div className="row">
             <label htmlFor="comment">Comments</label>
             <textarea
-              onBlur={(e) => setCourseComments(e.target.value)}
+              onBlur={courseCommentsHandler}
               rows="6"
             ></textarea>
           </div>
