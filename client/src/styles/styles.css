@@ -169,6 +169,8 @@
   border-radius: 100px;
   font-size: 0.9em;
   outline: none;
+  -webkit-appearance:none;
+  appearance: none;
 }
 
 .select-wrapper {
