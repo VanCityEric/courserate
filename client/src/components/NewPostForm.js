@@ -94,7 +94,11 @@ const NewPostForm = ({
         courseWorkload,
         courseProfRating,
         courseComments, 
-        courseQuality
+        courseQuality, 
+        courseGrade,
+        tag1,
+        tag2,
+        tag3
       };
       const response = await fetch("/api/insert", {
         method: "POST",
