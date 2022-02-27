@@ -1,6 +1,6 @@
 CREATE DATABASE courses;
 
-CREATE TABLE entries(
+CREATE TABLE average(
     entry_id SERIAL PRIMARY KEY, 
     course_name VARCHAR(255),
     course_number INT,
@@ -18,8 +18,8 @@ CREATE TABLE entries(
     course_year INT,
     course_day INT,
     course_month INT,
-    course_time INT, 
-    course_faculty VARCHAR(255)
+    course_faculty VARCHAR(255),
+    course_time BIGINT
 );
 
 CREATE TABLE average(

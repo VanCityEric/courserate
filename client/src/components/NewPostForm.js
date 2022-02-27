@@ -106,7 +106,7 @@ const NewPostForm = ({
         courseFaculty,
         courseTime
       };
-      const response = await fetch("/api/insert", {
+      await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)

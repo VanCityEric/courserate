@@ -50,42 +50,71 @@ app.get("/api/getAverages", (req, res) => {
 });
 
 app.post("/api/averagesinsert", (req, res) => {
-  const averageName = req.body.averageName;
-  const averageNumber = req.body.averageNumber;
-  const averageAvg = req.body.averageAvg;
-  const averageWorkload = req.body.averageWorkload;
-  const averageRepeat = req.body.averageRepeat;
-  const averageProf = req.body.averageProf;
-  const averageTitle = req.body.averageTitle;
-  const averageDifficulty = req.body.averageDifficulty;
+  try {
+    const {
+      courseName,
+      courseNumber,
+      courseProfessor,
+      courseDifficulty,
+      courseWorkload,
+      courseProfRating, 
+      courseComments,
+      courseQuality,
+      courseGrade,
+      tag1,
+      tag2,
+      tag3,
+      titleCourse,
+      courseYear,
+      courseDay,
+      courseMonth,
+      courseFaculty,
+      courseTime
+    } = req.body;
+    const newAv = await pool.query(
+      `INSERT INTO average (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating, course_comment, course_quality, course_grade, course_tag1, course_tag2, course_tag3, course_title, course_year, course_day, course_month, course_faculty, course_time) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating}, '${courseComments}', ${courseQuality}, '${courseGrade}', '${tag1}', '${tag2}', '${tag3}', '${titleCourse}', ${courseYear}, ${courseDay}, ${courseMonth}, '${courseFaculty}', ${courseTime})`
+    );
 
-  const sqlInsert = `INSERT INTO average 
-  (
-    average_name,
-    average_number,
-    average_avg,
-    average_workload,
-    average_repeat,
-    average_prof,
-    average_title,
-    average_difficulty
+    res.json(newAv.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+  // const averageName = req.body.averageName;
+  // const averageNumber = req.body.averageNumber;
+  // const averageAvg = req.body.averageAvg;
+  // const averageWorkload = req.body.averageWorkload;
+  // const averageRepeat = req.body.averageRepeat;
+  // const averageProf = req.body.averageProf;
+  // const averageTitle = req.body.averageTitle;
+  // const averageDifficulty = req.body.averageDifficulty;
 
-  ) SELECT 
-    '${averageName}',
-    ${averageNumber},
-    ${averageAvg},
-    ${averageWorkload},
-    ${averageRepeat},
-    '${averageProf}',
-    '${averageTitle}',
-    ${averageDifficulty}
-    WHERE NOT EXISTS (
-      SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
-    )
-  `;
-  pool.query(sqlInsert, (err, result) => {
-    console.log(err);
-  });
+  // const sqlInsert = `INSERT INTO average 
+  // (
+  //   average_name,
+  //   average_number,
+  //   average_avg,
+  //   average_workload,
+  //   average_repeat,
+  //   average_prof,
+  //   average_title,
+  //   average_difficulty
+
+  // ) SELECT 
+  //   '${averageName}',
+  //   ${averageNumber},
+  //   ${averageAvg},
+  //   ${averageWorkload},
+  //   ${averageRepeat},
+  //   '${averageProf}',
+  //   '${averageTitle}',
+  //   ${averageDifficulty}
+  //   WHERE NOT EXISTS (
+  //     SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
+  //   )
+  // `;
+  // pool.query(sqlInsert, (err, result) => {
+  //   console.log(err);
+  // });
 });
 
 app.post("/api/insert", async (req, res) => {
