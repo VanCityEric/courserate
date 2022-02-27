@@ -29,7 +29,6 @@ const NewPostForm = ({
   const [courseFaculty, setCourseFaculty] = useState("");
   const [courseQuality, setCourseQuality] = useState("");
 
-
   const onCancel = () => {
     setError("");
     setIsOpen(false);
@@ -83,7 +82,7 @@ const NewPostForm = ({
       setCourseName(currentPageName);
     }
     e.preventDefault();
-    
+
     try {
       const body = { courseName };
       const numbery = { courseNumber };
@@ -95,8 +94,7 @@ const NewPostForm = ({
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body, numbery),
-      
+        body: JSON.stringify(body)
       });
     } catch (err) {
       console.error(err.message);
@@ -164,8 +162,6 @@ const NewPostForm = ({
     //   setIsSuccessOpen(false);
     // }
   };
-
-
 
   const [tagClassName, setTagClassName] = useState("tag");
   const tagHandler = (e) => {
