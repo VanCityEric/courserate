@@ -20,14 +20,14 @@ const NewPostForm = ({
   const [tag2, setTag2] = useState("");
   const [tag3, setTag3] = useState("");
   const [courseName, setCourseName] = useState("");
-  const [courseNumber, setCourseNumber] = useState();
+  const [courseNumber, setCourseNumber] = useState(0);
   const [courseProfessor, setCourseProfessor] = useState("");
-  const [courseDifficulty, setCourseDifficulty] = useState("");
-  const [courseWorkload, setCourseWorkload] = useState("");
-  const [courseProfRating, setCourseProfRating] = useState("");
+  const [courseDifficulty, setCourseDifficulty] = useState(0);
+  const [courseWorkload, setCourseWorkload] = useState(0);
+  const [courseProfRating, setCourseProfRating] = useState(0);
   const [courseComments, setCourseComments] = useState("");
   const [courseFaculty, setCourseFaculty] = useState("");
-  const [courseQuality, setCourseQuality] = useState("");
+  const [courseQuality, setCourseQuality] = useState(0);
 
   const onCancel = () => {
     setError("");
@@ -113,7 +113,7 @@ const NewPostForm = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
-      
+
     } catch (err) {
       console.error(err.message);
     }
