@@ -18,7 +18,8 @@ CREATE TABLE entries(
     course_year INT,
     course_day INT,
     course_month INT,
-    course_time INT
+    course_time INT, 
+    course_faculty VARCHAR(255)
 );
 
 CREATE TABLE average(
@@ -50,7 +51,8 @@ INSERT INTO entries
     course_year,
     course_day,
     course_month,
-    course_time
+    course_time,
+    course_faculty
   )
   VALUES
   (
@@ -70,6 +72,7 @@ INSERT INTO entries
     2022,
     29,
     3,
-    0192838475
+    0192838475,
+    'Communications'
 
   );

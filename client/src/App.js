@@ -13,7 +13,6 @@ import ResultsPage from "./components/ResultsPage";
 import CoursePage from "./components/CoursePage";
 
 const App = () => {
- 
   const [dashboardHeader, setDashboardHeader] = useState(
     "Welcome to CourseRate"
   );
@@ -170,7 +169,6 @@ const App = () => {
     getAverages();
   }, []);
 
-
   React.useEffect(() => {
     const data = localStorage.getItem("currentSearchValue");
     if (data) {
@@ -222,7 +220,7 @@ const App = () => {
           filledForm={filledForm}
           setFilledForm={setFilledForm}
           currentPageName={currentPageName}
-          setIsSuccessOpen={ setIsSuccessOpen}
+          setIsSuccessOpen={setIsSuccessOpen}
         />
         <div className="content">
           <Routes>
@@ -282,12 +280,15 @@ const App = () => {
                   filledForm={filledForm}
                   currentPageName={currentPageName}
                   courseArray={courseArray}
-                  setIsSuccessOpen={ setIsSuccessOpen}
+                  setIsSuccessOpen={setIsSuccessOpen}
                 />
               }
             />
           </Routes>
-          <PostSuccess isSuccessOpen={isSuccessOpen} setIsSuccessOpen={ setIsSuccessOpen}/>
+          <PostSuccess
+            isSuccessOpen={isSuccessOpen}
+            setIsSuccessOpen={setIsSuccessOpen}
+          />
         </div>
       </Router>
     </React.Fragment>
