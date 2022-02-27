@@ -82,7 +82,6 @@ const NewPostForm = ({
     if (filledForm === true) {
       setCourseName(currentPageName);
     }
-
     e.preventDefault();
    
     if (
@@ -95,7 +94,7 @@ const NewPostForm = ({
       courseProfRating !== "" &&
       courseFaculty !== ""
     ) {
-      axios.post("/api/insert", {
+      axios.post("http://localhost:3001/api/insert", {
         courseName: courseName,
         courseNumber: courseNumber,
         courseProf: courseProfessor,
