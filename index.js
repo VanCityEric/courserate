@@ -82,8 +82,8 @@ app.post("/api/averagesinsert", (req, res) => {
 
     const newAverage = await pool.query(sqlInsert);
     res.json(newAverage);
-  } catch (error) {
-    console.err(err.message);
+  } catch (err) {
+    console.error(err.message);
   }
 });
 
