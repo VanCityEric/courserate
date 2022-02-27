@@ -86,51 +86,68 @@ const NewPostForm = ({
     let courseTime = date.getTime();
 
     e.preventDefault();
-    try {
-      const body = {
-        courseName,
-        courseNumber,
-        courseProfessor,
-        courseDifficulty,
-        courseWorkload,
-        courseProfRating,
-        courseComments, 
-        courseQuality, 
-        courseGrade,
-        tag1,
-        tag2,
-        tag3,
-        titleCourse,
-        courseYear,
-        courseDay,
-        courseMonth,
-        courseFaculty,
-        courseTime,
-        repeat
-      };
-      await fetch("/api/insert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      await fetch("/api/averagesinsert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      await fetch("/api/update", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      window.location = "/";
-    } catch (err) {
-      console.error(err.message);
+    if (
+      courseName !== "" &&
+      courseQuality !== "" &&
+      courseNumber !== "" &&
+      courseProfessor !== "" &&
+      courseDifficulty !== "" &&
+      courseWorkload !== "" &&
+      courseProfRating !== "" &&
+      courseFaculty !== ""
+    )
+    {
+      try {
+        const body = {
+          courseName,
+          courseNumber,
+          courseProfessor,
+          courseDifficulty,
+          courseWorkload,
+          courseProfRating,
+          courseComments, 
+          courseQuality, 
+          courseGrade,
+          tag1,
+          tag2,
+          tag3,
+          titleCourse,
+          courseYear,
+          courseDay,
+          courseMonth,
+          courseFaculty,
+          courseTime,
+          repeat
+        };
+        await fetch("/api/insert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        await fetch("/api/averagesinsert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        await fetch("/api/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        window.location = "/";
+      } catch (err) {
+        console.error(err.message);
+      }
+      setError("");
+      setIsOpen(false);
+    } else {
+      setError("Please fill in required fields.");
+      setIsOpen(true);
     }
-
+    
   
   };
 

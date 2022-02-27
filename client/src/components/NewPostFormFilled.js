@@ -78,17 +78,20 @@ const NewPostFormFilled = ({
     }
   };
 
+  let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
-
+  let repeat = 1;
 
   const NewEntryHandler = (e) => {
-    if (filledForm === true) {
-      setCourseName(currentPageName);
-    }
+    let courseYear = date.getFullYear();
+    let courseMonth = date.getMonth();
+    let courseDay = date.getDate();
+    let courseTime = date.getTime();
 
     e.preventDefault();
+
     if (
-      // courseName !== "" &&
+      courseName !== "" &&
       courseQuality !== "" &&
       courseNumber !== "" &&
       courseProfessor !== "" &&
@@ -96,51 +99,52 @@ const NewPostFormFilled = ({
       courseWorkload !== "" &&
       courseProfRating !== "" &&
       courseFaculty !== ""
-    ) {
-      Axios.post("/api/insert", {
-        courseName: currentCourseName,
-        courseNumber: currentCourseNumber,
-        courseProf: courseProfessor,
-        courseDifficulty: courseDifficulty,
-        courseWorkload: courseWorkload,
-        courseProfRating: courseProfRating,
-        courseComment: courseComments,
-        courseFaculty: courseFaculty,
-        courseQuality: courseQuality,
-        courseGrade: courseGrade,
-        courseTag1: tag1,
-        courseTag2: tag2,
-        courseTag3: tag3,
-        courseTitle: id,
-        courseYear: date.getFullYear(),
-        courseMonth: date.getMonth(),
-        courseDay: date.getDate(),
-        courseTime: date.getTime()
-      }).then(() => {
-        alert("success");
-      });
-
-      Axios.post("/api/averagesinsert", {
-        averageName: currentCourseName,
-        averageNumber: currentCourseNumber,
-        averageAvg: courseQuality,
-        averageDifficulty: courseDifficulty,
-        averageWorkload: courseWorkload,
-        averageRepeat: 1,
-        averageProf: courseProfessor,
-        averageTitle: id,
-        averageTime: date.getTime()
-      });
-
-      Axios.post("/api/update", {
-        updateName: currentCourseName,
-        updateNumber: currentCourseNumber,
-        updateProf: courseProfessor,
-        updateAvg: courseQuality,
-        updateWorkload: courseWorkload,
-        updateDifficulty: courseDifficulty
-      });
-
+    )
+    {
+      try {
+        const body = {
+          courseName,
+          courseNumber,
+          courseProfessor,
+          courseDifficulty,
+          courseWorkload,
+          courseProfRating,
+          courseComments, 
+          courseQuality, 
+          courseGrade,
+          tag1,
+          tag2,
+          tag3,
+          titleCourse,
+          courseYear,
+          courseDay,
+          courseMonth,
+          courseFaculty,
+          courseTime,
+          repeat
+        };
+        await fetch("/api/insert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        await fetch("/api/averagesinsert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        await fetch("/api/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+  
+        window.location = "/";
+      } catch (err) {
+        console.error(err.message);
+      }
       setIsFilledOpen(false);
       setIsSuccessOpen(true);
     } else {
@@ -149,8 +153,6 @@ const NewPostFormFilled = ({
       setIsSuccessOpen(false);
     }
   };
-
-
 
   const [tagClassName, setTagClassName] = useState("tag");
   const tagHandler = (e) => {
