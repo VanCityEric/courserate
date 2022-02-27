@@ -75,26 +75,45 @@ const NewPostForm = ({
   };
 
   let titleCourse = courseName + " " + courseNumber;
-  let date = new Date();
+    let date = new Date();
+   
 
   const NewEntryHandler = async (e) => {
-    if (filledForm === true) {
-      setCourseName(currentPageName);
-    }
+    let courseYear = date.getFullYear();
+    let courseMonth = date.getMonth();
+    let courseDay = date.getDate();
+    let courseTime = date.getTime();
+
     e.preventDefault();
 
     try {
-      const body = { courseName, courseNumber };
-      //proxy is only use in development so it will be ignored in production
-      //so if there is no http://localhost:5000 then by default it is going to use heroku domain
-      //remember this heroku app is just our server serving the build static content and also holding the restful api
-
-      //https://pern-todo-app-demo.herokuapp.com/todos
+      const body = {
+        courseName,
+        courseNumber,
+        courseProfessor,
+        courseDifficulty,
+        courseWorkload,
+        courseProfRating,
+        courseComments,
+        courseFaculty,
+        courseQuality,
+        courseGrade,
+        tag1,
+        tag2,
+        tag3,
+        titleCourse,
+        courseYear,
+        courseMonth,
+        courseDay,
+        courseTime
+      };
+    
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
+      
     } catch (err) {
       console.error(err.message);
     }
