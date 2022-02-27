@@ -94,7 +94,7 @@ const NewPostForm = ({
       courseProfRating !== "" &&
       courseFaculty !== ""
     ) {
-      Axios.post("http://localhost:3001/api/insert", {
+      Axios.post("/api/insert", {
         courseName: courseName,
         courseNumber: courseNumber,
         courseProf: courseProfessor,
@@ -117,7 +117,7 @@ const NewPostForm = ({
         alert("success");
       });
 
-      Axios.post("http://localhost:3001/api/averagesinsert", {
+      Axios.post("/api/averagesinsert", {
         averageName: courseName,
         averageNumber: courseNumber,
         averageAvg: courseQuality,
@@ -129,7 +129,7 @@ const NewPostForm = ({
         averageTime: date.getTime()
       });
 
-      Axios.post("http://localhost:3001/api/update", {
+      Axios.post("/api/update", {
         updateName: courseName,
         updateNumber: courseNumber,
         updateProf: courseProfessor,

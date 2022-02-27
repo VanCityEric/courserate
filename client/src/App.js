@@ -146,7 +146,7 @@ const App = () => {
 
   const getEntries = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/get");
+      const response = await fetch("/api/get");
       const jsonData = await response.json();
       setEntriesArray(jsonData.rows);
     } catch (err) {
@@ -159,7 +159,7 @@ const App = () => {
 
   const getAverages = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/getAverages");
+      const response = await fetch("/api/getAverages");
       const jsonData = await response.json();
       setAveragesArray(jsonData.rows);
     } catch (err) {
