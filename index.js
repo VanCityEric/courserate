@@ -10,14 +10,14 @@ const { Pool } = require("pg");
 const { title } = require("process");
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-  // user: "postgres",
-  // password: "kimeron123",
-  // host: "localhost",
-  // port: 5432,
-  // database: "courses"
+  // ssl: {
+  //   rejectUnauthorized: false
+  // }
+  user: "postgres",
+  password: "kimeron123",
+  host: "localhost",
+  port: 5432,
+  database: "courses"
 });
 
 app.use(cors());

@@ -11,7 +11,7 @@ const SearchEntries = ({averagesArray, entry, searchArray, setSearchName}) => {
     let className = 'average-circle';
     if(averageSum < 3) {
         className += ' red';
-      } else if (averageSum === 3) {
+      } else if (averageSum == 3) {
         className += ' yellow';
       } else if (averageSum > 3) {
         className += ' green';
