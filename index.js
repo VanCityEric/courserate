@@ -74,7 +74,7 @@ app.post("/api/averagesinsert", (req, res) => {
       repeat
     } = req.body;
     const newAv = await pool.query(
-      `INSERT INTO average (average_name, average_number, average_avg, average_workload, average_repeat, average_title, average_difficulty) SELECT '${courseName}', ${courseNumber}, ${courseQuality}, ${courseWorkload}, ${repeat}, '${titleCourse}', ${courseDifficulty} WHERE NOT EXISTS (SELECT 1 FROM average WHERE average_name = '${courseName})' AND average_number=${courseNumber})`
+      `INSERT INTO average (average_name, average_number, average_avg, average_workload, average_repeat, average_title, average_difficulty) SELECT '${courseName}', ${courseNumber}, ${courseQuality}, ${courseWorkload}, ${repeat}, '${titleCourse}', ${courseDifficulty} WHERE NOT EXISTS (SELECT 1 FROM average WHERE average_name = '${courseName}' AND average_number=${courseNumber})`
     );
 
     res.json(newAv.rows[0]);
