@@ -79,7 +79,7 @@ const NewPostFormFilled = ({
   let date = new Date();
   let repeat = 1;
 
-  const NewEntryHandler = (e) => {
+  const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
