@@ -88,9 +88,9 @@ app.post("/api/insert", (req, res) => {
 
   try {
     console.log(req.body);
-    const { description } = req.body;
+    const { courseName } = req.body;
     pool.query(
-      "INSERT INTO todo (description) VALUES ('98')",
+      `INSERT INTO todo (description) VALUES ('${courseName}')`,
     );
   } catch (err) {
     console.error(err.message);
