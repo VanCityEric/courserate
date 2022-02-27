@@ -7,10 +7,7 @@ const NewPostFormFilled = ({
   workloadArray,
   profRateArray,
   facultyArray,
-  setIsOpen,
-  entriesArray,
   filledForm,
-  setFilledForm,
   currentPageName,
   id,
   currentCourseName,
@@ -78,17 +75,19 @@ const NewPostFormFilled = ({
     }
   };
 
+  let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
-
+  let repeat = 1;
 
   const NewEntryHandler = (e) => {
-    if (filledForm === true) {
-      setCourseName(currentPageName);
-    }
+    let courseYear = date.getFullYear();
+    let courseMonth = date.getMonth();
+    let courseDay = date.getDate();
+    let courseTime = date.getTime();
 
     e.preventDefault();
     if (
-      // courseName !== "" &&
+      courseName !== "" &&
       courseQuality !== "" &&
       courseNumber !== "" &&
       courseProfessor !== "" &&
@@ -97,51 +96,52 @@ const NewPostFormFilled = ({
       courseProfRating !== "" &&
       courseFaculty !== ""
     ) {
-      Axios.post("http://localhost:3001/api/insert", {
-        courseName: currentCourseName,
-        courseNumber: currentCourseNumber,
-        courseProf: courseProfessor,
-        courseDifficulty: courseDifficulty,
-        courseWorkload: courseWorkload,
-        courseProfRating: courseProfRating,
-        courseComment: courseComments,
-        courseFaculty: courseFaculty,
-        courseQuality: courseQuality,
-        courseGrade: courseGrade,
-        courseTag1: tag1,
-        courseTag2: tag2,
-        courseTag3: tag3,
-        courseTitle: id,
-        courseYear: date.getFullYear(),
-        courseMonth: date.getMonth(),
-        courseDay: date.getDate(),
-        courseTime: date.getTime()
-      }).then(() => {
-        alert("success");
-      });
+      try {
+        const body = {
+          currentCourseName,
+          currentCourseNumber,
+          courseProfessor,
+          courseDifficulty,
+          courseWorkload,
+          courseProfRating,
+          courseComments,
+          courseQuality,
+          courseGrade,
+          tag1,
+          tag2,
+          tag3,
+          titleCourse,
+          courseYear,
+          courseDay,
+          courseMonth,
+          courseFaculty,
+          courseTime,
+          repeat
+        };
+        await fetch("/api/insert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
 
-      Axios.post("http://localhost:3001/api/averagesinsert", {
-        averageName: currentCourseName,
-        averageNumber: currentCourseNumber,
-        averageAvg: courseQuality,
-        averageDifficulty: courseDifficulty,
-        averageWorkload: courseWorkload,
-        averageRepeat: 1,
-        averageProf: courseProfessor,
-        averageTitle: id,
-        averageTime: date.getTime()
-      });
+        await fetch("/api/averagesinsert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
 
-      Axios.post("http://localhost:3001/api/update", {
-        updateName: currentCourseName,
-        updateNumber: currentCourseNumber,
-        updateProf: courseProfessor,
-        updateAvg: courseQuality,
-        updateWorkload: courseWorkload,
-        updateDifficulty: courseDifficulty
-      });
+        await fetch("/api/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
 
-      setIsFilledOpen(false);
+        window.location = "/";
+      } catch (err) {
+        console.error(err.message);
+      }
+      setError("");
+      setIsOpen(false);
       setIsSuccessOpen(true);
     } else {
       setError("Please fill in required fields.");
@@ -149,8 +149,6 @@ const NewPostFormFilled = ({
       setIsSuccessOpen(false);
     }
   };
-
-
 
   const [tagClassName, setTagClassName] = useState("tag");
   const tagHandler = (e) => {
