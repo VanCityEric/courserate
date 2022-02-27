@@ -94,7 +94,7 @@ const NewPostForm = ({
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body, numbery)
       });
     } catch (err) {
       console.error(err.message);
