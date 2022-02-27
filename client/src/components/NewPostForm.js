@@ -84,17 +84,6 @@ const NewPostForm = ({
     }
     e.preventDefault();
    
-
-    if (
-      // courseName !== "" &&
-      courseQuality !== "" &&
-      courseNumber !== "" &&
-      courseProfessor !== "" &&
-      courseDifficulty !== "" &&
-      courseWorkload !== "" &&
-      courseProfRating !== "" &&
-      courseFaculty !== ""
-    ) {
       axios.post("/api/insert", {
         courseName: courseName,
         courseNumber: courseNumber,
@@ -141,11 +130,6 @@ const NewPostForm = ({
 
       setIsOpen(false);
       setIsSuccessOpen(true);
-    } else {
-      setError("Please fill in required fields.");
-      setIsOpen(true);
-      setIsSuccessOpen(false);
-    }
   };
 
 
