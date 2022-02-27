@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 
 const NewPostFormFilled = ({
   courseArray,
@@ -103,8 +102,8 @@ const NewPostFormFilled = ({
     {
       try {
         const body = {
-          courseName,
-          courseNumber,
+          currentCourseName,
+          currentCourseNumber,
           courseProfessor,
           courseDifficulty,
           courseWorkload,
