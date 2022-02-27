@@ -141,7 +141,7 @@ const NewPostFormFilled = ({
         console.error(err.message);
       }
       setError("");
-      setIsOpen(false);
+      setIsFilledOpen(false);
       setIsSuccessOpen(true);
     } else {
       setError("Please fill in required fields.");
