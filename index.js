@@ -50,25 +50,42 @@ app.get("/api/getAverages", (req, res) => {
 });
 
 app.post("/api/averagesinsert", (req, res) => {
-  try {
-    const {
-      courseName,
-      courseNumber,
-      courseQuality,
-      courseDifficulty,
-      courseWorkload,
-      titleCourse,
-      repeat
-    } = req.body;
+  const averageName = req.body.averageName;
+  const averageNumber = req.body.averageNumber;
+  const averageAvg = req.body.averageAvg;
+  const averageWorkload = req.body.averageWorkload;
+  const averageRepeat = req.body.averageRepeat;
+  const averageProf = req.body.averageProf;
+  const averageTitle = req.body.averageTitle;
+  const averageDifficulty = req.body.averageDifficulty;
 
-    const newAv = await pool.query(
-      `INSERT INTO average (average_name, average_number, average_avg, average_workload, average_repeat, average_title, average_difficulty) SELECT '${courseName}', ${courseNumber}, ${courseQuality}, ${courseWorkload}, ${repeat}, '${titleCourse}', ${courseDifficulty} WHERE NOT EXISTS (SELECT 1 FROM average WHERE average_name='${courseName}' AND average_number=${courseNumber})`
-    );
+  const sqlInsert = `INSERT INTO average 
+  (
+    average_name,
+    average_number,
+    average_avg,
+    average_workload,
+    average_repeat,
+    average_prof,
+    average_title,
+    average_difficulty
 
-    res.json(newAv.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
+  ) SELECT 
+    '${averageName}',
+    ${averageNumber},
+    ${averageAvg},
+    ${averageWorkload},
+    ${averageRepeat},
+    '${averageProf}',
+    '${averageTitle}',
+    ${averageDifficulty}
+    WHERE NOT EXISTS (
+      SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
+    )
+  `;
+  pool.query(sqlInsert, (err, result) => {
+    console.log(err);
+  });
 });
 
 app.post("/api/insert", async (req, res) => {
@@ -79,7 +96,7 @@ app.post("/api/insert", async (req, res) => {
       courseProfessor,
       courseDifficulty,
       courseWorkload,
-      courseProfRating,
+      courseProfRating, 
       courseComments,
       courseQuality,
       courseGrade,
