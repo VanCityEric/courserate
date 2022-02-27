@@ -270,11 +270,10 @@ const NewPostForm = ({
           </div>
           <div className="row">
             <label htmlFor="comment">Comments</label>
-            <input
-              className="input"
-              type="text"
+            <textarea
               onBlur={(e) => setCourseComments(e.target.value)}
-            ></input>
+              rows="6"
+            ></textarea>
           </div>
           <div className="row tags-container">
             <label>
