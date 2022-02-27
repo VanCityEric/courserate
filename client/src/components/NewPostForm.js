@@ -77,7 +77,7 @@ const NewPostForm = ({
 
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
-  let repeat = 1;
+  let repeat = 0;
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -143,9 +143,11 @@ const NewPostForm = ({
       }
       setError("");
       setIsOpen(false);
+      setIsSuccessOpen(true);
     } else {
       setError("Please fill in required fields.");
       setIsOpen(true);
+      setIsSuccessOpen(false);
     }
     
   
