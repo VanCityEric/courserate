@@ -246,7 +246,7 @@ const NewPostFormFilled = ({
           <div className="row">
             <label htmlFor="comment">Comments</label>
             <textarea
-              onChange={(e) => setCourseComments(e.target.value)}
+              onBlur={(e) => setCourseComments(e.target.value)}
               rows="6"
             ></textarea>
           </div>
