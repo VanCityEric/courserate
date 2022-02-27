@@ -151,7 +151,7 @@ app.post("/api/insert", (req, res) => {
   
     ) RETURNING *`;
     const newEntry = await pool.query(sqlInsert);
-    res.json(newEntry.rows[0]);
+    res.json(newEntry);
   } catch (err) {
     console.error(err.message);
   }
