@@ -13,7 +13,7 @@ const PostSuccess = ({ isSuccessOpen, setIsSuccessOpen }) => {
           <h3 className="modal-title">
             Thanks! Your review has been successfully posted.
           </h3>
-          <button className="btn " onClick={() => setIsSuccessOpen(false)}>
+          <button className="btn " onClick={successOpenHandler}>
             {" "}
             Okay{" "}
           </button>
