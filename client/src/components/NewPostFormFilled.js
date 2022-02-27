@@ -77,7 +77,7 @@ const NewPostFormFilled = ({
 
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
-  let repeat = 1;
+  let repeat = 0;
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
