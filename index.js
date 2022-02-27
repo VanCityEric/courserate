@@ -81,8 +81,6 @@ app.post("/api/averagesinsert", (req, res) => {
     WHERE NOT EXISTS (
       SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
     )
-   
-
   `;
   pool.query(sqlInsert, (err, result) => {
     console.log(err);

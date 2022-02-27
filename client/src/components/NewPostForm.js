@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 const NewPostForm = ({
   courseArray,
@@ -84,6 +84,7 @@ const NewPostForm = ({
     }
 
     e.preventDefault();
+   
     if (
       // courseName !== "" &&
       courseQuality !== "" &&
@@ -94,7 +95,7 @@ const NewPostForm = ({
       courseProfRating !== "" &&
       courseFaculty !== ""
     ) {
-      Axios.post("/api/insert", {
+      axios.post("/api/insert", {
         courseName: courseName,
         courseNumber: courseNumber,
         courseProf: courseProfessor,
@@ -117,7 +118,7 @@ const NewPostForm = ({
         alert("success");
       });
 
-      Axios.post("/api/averagesinsert", {
+      axios.post("/api/averagesinsert", {
         averageName: courseName,
         averageNumber: courseNumber,
         averageAvg: courseQuality,
@@ -129,7 +130,7 @@ const NewPostForm = ({
         averageTime: date.getTime()
       });
 
-      Axios.post("/api/update", {
+      axios.post("/api/update", {
         updateName: courseName,
         updateNumber: courseNumber,
         updateProf: courseProfessor,
