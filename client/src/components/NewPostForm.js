@@ -35,6 +35,12 @@ const NewPostForm = ({
     setIsOpen(false);
     setFilledForm(false);
   };
+
+  const courseCommentsHandler = e => {
+    let commentApostrophe = (e.target.value).replace(/'/g, "\'\'");
+    setCourseComments(commentApostrophe);
+  }
+
   const courseQualityHandler = (e) => {
     console.log(courseQuality);
     if (e.target.value === "1 - avoid it all costs!") {
@@ -79,7 +85,6 @@ const NewPostForm = ({
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
   let repeat = 1;
-  courseName.replace("'", "''");
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -183,10 +188,7 @@ const NewPostForm = ({
     courseNameValue = "Choose course";
   }
 
-  const courseCommentsHandler = e => {
-    let commentApostrophe = (e.target.value).replace(/'/g, "\'\'");
-    setCourseComments(commentApostrophe);
-  }
+
 
   console.log(courseComments);
 
