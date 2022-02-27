@@ -79,7 +79,7 @@ const NewPostForm = ({
   let date = new Date();
   let repeat = 1;
 
-  const NewEntryHandler = (e) => {
+  const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
@@ -118,7 +118,7 @@ const NewPostForm = ({
           courseTime,
           repeat
         };
-        fetch("/api/insert", {
+        await fetch("/api/insert", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
@@ -270,10 +270,10 @@ const NewPostForm = ({
           </div>
           <div className="row">
             <label htmlFor="comment">Comments</label>
-            <textarea
+            <input
               onBlur={(e) => setCourseComments(e.target.value)}
               rows="6"
-            ></textarea>
+            ></input>
           </div>
           <div className="row tags-container">
             <label>
