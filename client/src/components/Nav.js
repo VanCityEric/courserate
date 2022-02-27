@@ -10,33 +10,9 @@ const Nav = ({
   workloadArray,
   profRateArray,
   facultyArray,
-  setDashboardHeader,
-  setCourseName,
-  setEntriesArray,
   entriesArray,
-  courseName,
-  courseNumber,
-  setCourseNumber,
-  professor,
-  setProfessor,
-  difficulty,
-  setDifficulty,
-  workload,
-  setWorkload,
-  profRating,
-  setProfRating,
-  comments,
-  setComments,
-  faculty,
-  setFaculty,
-  courseLike,
-  setCourseLike,
   coursesArray,
-  setCoursesArray,
   averagesArray,
-  setAveragesArray,
-  searchArray,
-  setSearchArray,
   isOpen,
   setIsOpen,
   filledForm,
@@ -54,12 +30,11 @@ const Nav = ({
       <div className="nav-container">
         <nav>
           <div>
-            <img className="logo" src={logo} alt="logo" />
+            <img className="logo" src={logo} alt="logo" onClick={homeHandler} />
           </div>
 
           <ul className="nav-links">
             <li onClick={() => homeHandler()}>Home</li>
-            <li onClick={() => setDashboardHeader("Login")}>Login</li>
             <button className="btn post-btn" onClick={() => setIsOpen(true)}>
               Post a Review
             </button>
@@ -80,7 +55,7 @@ const Nav = ({
         setFilledForm={setFilledForm}
         currentPageName={currentPageName}
         setIsSuccessOpen={setIsSuccessOpen}
-        averagesArray={ averagesArray}
+        averagesArray={averagesArray}
       />
     </React.Fragment>
   );

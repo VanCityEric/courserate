@@ -68,7 +68,7 @@ const CoursePage = ({
           />
         ))}
       {entriesArray
-        .sort((a, b) => (a.time < b.time ? 1 : -1))
+        .sort((a, b) => (a.course_time < b.course_time ? 1 : -1))
         .filter((entry) => {
           if (
             !entry.course_title
@@ -90,7 +90,7 @@ const CoursePage = ({
             workload={entry.course_workload}
             profRating={entry.course_prof_rating}
             comments={entry.course_comment}
-            // faculty={entry.fac}
+            faculty={entry.course_faculty}
             day={entry.course_day}
             month={entry.course_month}
             year={entry.course_year}
