@@ -92,11 +92,11 @@ app.post("/api/insert", async (req, res) => {
       courseFaculty,
       courseTime
     } = req.body;
-    await pool.query(
+    const newEntry = await pool.query(
       `INSERT INTO entries (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating, course_comment, course_quality, course_grade, course_tag1, course_tag2, course_tag3, course_title, course_year, course_day, course_month, course_faculty, course_time) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating}, '${courseComments}', ${courseQuality}, '${courseGrade}', '${tag1}', '${tag2}', '${tag3}', '${titleCourse}', ${courseYear}, ${courseDay}, ${courseMonth}, '${courseFaculty}', ${courseTime})`
     );
 
-    // res.json(newEntry.rows[0]);
+    res.json(newEntry.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
