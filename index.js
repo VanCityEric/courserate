@@ -50,42 +50,25 @@ app.get("/api/getAverages", (req, res) => {
 });
 
 app.post("/api/averagesinsert", (req, res) => {
-  const averageName = req.body.averageName;
-  const averageNumber = req.body.averageNumber;
-  const averageAvg = req.body.averageAvg;
-  const averageWorkload = req.body.averageWorkload;
-  const averageRepeat = req.body.averageRepeat;
-  const averageProf = req.body.averageProf;
-  const averageTitle = req.body.averageTitle;
-  const averageDifficulty = req.body.averageDifficulty;
+  try {
+    const {
+      courseName,
+      courseNumber,
+      courseQuality,
+      courseDifficulty,
+      courseWorkload,
+      titleCourse,
+      repeat
+    } = req.body;
 
-  const sqlInsert = `INSERT INTO average 
-  (
-    average_name,
-    average_number,
-    average_avg,
-    average_workload,
-    average_repeat,
-    average_prof,
-    average_title,
-    average_difficulty
+    const newEntry = await pool.query(
+      `INSERT INTO average (average_name, average_number, average_avg, average_workload, average_repeat, average_title, average_difficulty) SELECT '${courseName}', ${courseNumber}, ${courseQuality}, ${courseWorkload}, ${repeat}, '${titleCourse}', ${courseDifficulty} WHERE NOT EXISTS (SELECT 1 FROM average WHERE average_name='${courseName}' AND average_number=${courseNumber})`
+    );
 
-  ) SELECT 
-    '${averageName}',
-    ${averageNumber},
-    ${averageAvg},
-    ${averageWorkload},
-    ${averageRepeat},
-    '${averageProf}',
-    '${averageTitle}',
-    ${averageDifficulty}
-    WHERE NOT EXISTS (
-      SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
-    )
-  `;
-  pool.query(sqlInsert, (err, result) => {
-    console.log(err);
-  });
+    res.json(newEntry.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.post("/api/insert", async (req, res) => {
@@ -96,7 +79,7 @@ app.post("/api/insert", async (req, res) => {
       courseProfessor,
       courseDifficulty,
       courseWorkload,
-      courseProfRating, 
+      courseProfRating,
       courseComments,
       courseQuality,
       courseGrade,
@@ -118,95 +101,6 @@ app.post("/api/insert", async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-
-  // try {
-  //   const {
-  //     courseName,
-  //     courseNumber,
-  //     courseProfessor,
-  //     courseDifficulty,
-  //     courseWorkload,
-  //     courseProfRating,
-  //     courseComments,
-  //     courseFaculty,
-  //     courseQuality,
-  //     courseGrade,
-  //     tag1,
-  //     tag2,
-  //     tag3,
-  //     titleCourse,
-  //     courseYear,
-  //     courseMonth,
-  //     courseDay,
-  //     courseTime
-  //   } = req.body;
-  //   const sqlInsert = `INSERT INTO entries
-  //   (
-  //     course_name,
-  //     course_number,
-  //     course_prof,
-  //     course_difficulty,
-  //     course_workload,
-  //     course_prof_rating,
-  //     course_comment,
-  //     course_quality,
-  //     course_grade,
-  //     course_tag1,
-  //     course_tag2,
-  //     course_tag3,
-  //     course_title,
-  //     course_year,
-  //     course_day,
-  //     course_month,
-  //     course_time,
-  //     course_faculty
-  //   ) VALUES (
-  //     '${courseName}',
-  //     ${courseNumber},
-  //     '${courseProfessor}',
-  //     ${courseDifficulty},
-  //     ${courseWorkload},
-  //     ${courseProfRating},
-  //     '${courseComments}',
-  //     ${courseQuality},
-  //     '${courseGrade}',
-  //     '${tag1}',
-  //     '${tag2}',
-  //     '${tag3}',
-  //     '${titleCourse}',
-  //     ${courseYear},
-  //     ${courseDay},
-  //     ${courseMonth},
-  //     ${courseTime},
-  //     '${courseFaculty}'
-  //   )`;
-
-  //   pool.query(sqlInsert);
-  // } catch (err) {
-  //   console.error(err.message);
-  // }
-  // const courseName = req.body.courseName;
-  // const courseNumber = req.body.courseNumber;
-  // const courseProf = req.body.courseProf;
-  // const courseDifficulty = req.body.courseDifficulty;
-  // const courseWorkload = req.body.courseWorkload;
-  // const courseProfRating = req.body.courseProfRating;
-  // const courseComment = req.body.courseComment;
-  // const courseQuality = req.body.courseQuality;
-  // const courseGrade = req.body.courseGrade;
-  // const courseTag1 = req.body.courseTag1;
-  // const courseTag2 = req.body.courseTag2;
-  // const courseTag3 = req.body.courseTag3;
-  // const courseTitle = req.body.courseTitle;
-  // const courseYear = req.body.courseYear;
-  // const courseDay = req.body.courseDay;
-  // const courseMonth = req.body.courseMonth;
-  // const courseTime = req.body.courseTime;
-  // const courseFaculty = req.body.courseFaculty;
-
-  // pool.query(sqlInsert, (err, result) => {
-  //   console.log(err);
-  // });
 });
 
 app.post("/api/update", (req, res) => {

@@ -77,6 +77,7 @@ const NewPostForm = ({
 
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
+  let repeat = 1;
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -117,37 +118,26 @@ const NewPostForm = ({
       console.error(err.message);
     }
 
-    // try {
-    //   const body = {
-    //     courseName,
-    //     courseNumber,
-    //     courseProfessor,
-    //     courseDifficulty,
-    //     courseWorkload,
-    //     courseProfRating,
-    //     courseComments,
-    //     courseFaculty,
-    //     courseQuality,
-    //     courseGrade,
-    //     tag1,
-    //     tag2,
-    //     tag3,
-    //     titleCourse,
-    //     courseYear,
-    //     courseMonth,
-    //     courseDay,
-    //     courseTime
-    //   };
+    try {
+      const averageEntry = {
+        courseName,
+        courseNumber,
+        courseQuality,
+        courseDifficulty,
+        courseWorkload,
+        titleCourse,
+        repeat
+      };
+      const response = await fetch("/api/averagesinsert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(averageEntry)
+      });
 
-    //   const response = await fetch("/api/insert", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(body)
-    //   });
-
-    // } catch (err) {
-    //   console.error(err.message);
-    // }
+      window.location = "/";
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const [tagClassName, setTagClassName] = useState("tag");
