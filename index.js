@@ -152,8 +152,9 @@ app.post("/api/insert", (req, res) => {
     '${courseFaculty}'
 
   )`;
-  pool.query(sqlInsert, (err, result) => {
-    console.log(err);
+  pool.query(sqlInsert, (error, res) => {
+    if(error)
+      res.end(error);
   });
 });
 
