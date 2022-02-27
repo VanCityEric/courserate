@@ -88,73 +88,85 @@ app.post("/api/averagesinsert", (req, res) => {
   });
 });
 
-app.post("/api/insert", (req, res) => {
-  try {
-    const {
-      courseName,
-      courseNumber,
-      courseProfessor,
-      courseDifficulty,
-      courseWorkload,
-      courseProfRating,
-      courseComments,
-      courseFaculty,
-      courseQuality,
-      courseGrade,
-      tag1,
-      tag2,
-      tag3,
-      titleCourse,
-      courseYear,
-      courseMonth,
-      courseDay,
-      courseTime
-    } = req.body;
-    const sqlInsert = `INSERT INTO entries 
-    (
-      course_name,
-      course_number,
-      course_prof,
-      course_difficulty,
-      course_workload,
-      course_prof_rating,
-      course_comment,
-      course_quality,
-      course_grade,
-      course_tag1,
-      course_tag2,
-      course_tag3,
-      course_title,
-      course_year,
-      course_day,
-      course_month,
-      course_time,
-      course_faculty
-    ) VALUES (
-      '${courseName}', 
-      ${courseNumber},
-      '${courseProfessor}',
-      ${courseDifficulty},
-      ${courseWorkload},
-      ${courseProfRating},
-      '${courseComments}',
-      ${courseQuality},
-      '${courseGrade}',
-      '${tag1}',
-      '${tag2}',
-      '${tag3}',
-      '${titleCourse}',
-      ${courseYear},
-      ${courseDay},
-      ${courseMonth},
-      ${courseTime},
-      '${courseFaculty}'
-    )`;
+app.post("/api/insert", async (req, res) => {
+    try {
+      const { description } = req.body;
+      const newTodo = await pool.query(
+        "INSERT INTO todo (description) VALUES($1) RETURNING *",
+        [description]
+      );
 
-    pool.query(sqlInsert);
-  } catch (err) {
-    console.error(err.message);
-  }
+      res.json(newTodo.rows[0]);
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  // try {
+  //   const {
+  //     courseName,
+  //     courseNumber,
+  //     courseProfessor,
+  //     courseDifficulty,
+  //     courseWorkload,
+  //     courseProfRating,
+  //     courseComments,
+  //     courseFaculty,
+  //     courseQuality,
+  //     courseGrade,
+  //     tag1,
+  //     tag2,
+  //     tag3,
+  //     titleCourse,
+  //     courseYear,
+  //     courseMonth,
+  //     courseDay,
+  //     courseTime
+  //   } = req.body;
+  //   const sqlInsert = `INSERT INTO entries 
+  //   (
+  //     course_name,
+  //     course_number,
+  //     course_prof,
+  //     course_difficulty,
+  //     course_workload,
+  //     course_prof_rating,
+  //     course_comment,
+  //     course_quality,
+  //     course_grade,
+  //     course_tag1,
+  //     course_tag2,
+  //     course_tag3,
+  //     course_title,
+  //     course_year,
+  //     course_day,
+  //     course_month,
+  //     course_time,
+  //     course_faculty
+  //   ) VALUES (
+  //     '${courseName}', 
+  //     ${courseNumber},
+  //     '${courseProfessor}',
+  //     ${courseDifficulty},
+  //     ${courseWorkload},
+  //     ${courseProfRating},
+  //     '${courseComments}',
+  //     ${courseQuality},
+  //     '${courseGrade}',
+  //     '${tag1}',
+  //     '${tag2}',
+  //     '${tag3}',
+  //     '${titleCourse}',
+  //     ${courseYear},
+  //     ${courseDay},
+  //     ${courseMonth},
+  //     ${courseTime},
+  //     '${courseFaculty}'
+  //   )`;
+
+  //   pool.query(sqlInsert);
+  // } catch (err) {
+  //   console.error(err.message);
+  // }
   // const courseName = req.body.courseName;
   // const courseNumber = req.body.courseNumber;
   // const courseProf = req.body.courseProf;

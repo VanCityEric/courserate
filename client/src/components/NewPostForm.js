@@ -88,40 +88,51 @@ const NewPostForm = ({
 
 
     e.preventDefault();
-
     try {
-      const body = {
-        courseName,
-        courseNumber,
-        courseProfessor,
-        courseDifficulty,
-        courseWorkload,
-        courseProfRating,
-        courseComments,
-        courseFaculty,
-        courseQuality,
-        courseGrade,
-        tag1,
-        tag2,
-        tag3,
-        titleCourse,
-        courseYear,
-        courseMonth,
-        courseDay,
-        courseTime
-      };
-    
+      const body = { description };
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
 
+      window.location = "/";
     } catch (err) {
       console.error(err.message);
     }
+  };
 
-   
+    // try {
+    //   const body = {
+    //     courseName,
+    //     courseNumber,
+    //     courseProfessor,
+    //     courseDifficulty,
+    //     courseWorkload,
+    //     courseProfRating,
+    //     courseComments,
+    //     courseFaculty,
+    //     courseQuality,
+    //     courseGrade,
+    //     tag1,
+    //     tag2,
+    //     tag3,
+    //     titleCourse,
+    //     courseYear,
+    //     courseMonth,
+    //     courseDay,
+    //     courseTime
+    //   };
+    
+    //   const response = await fetch("/api/insert", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(body)
+    //   });
+
+    // } catch (err) {
+    //   console.error(err.message);
+    // }
   };
 
   const [tagClassName, setTagClassName] = useState("tag");
