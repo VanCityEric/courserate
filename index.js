@@ -90,13 +90,12 @@ app.post("/api/averagesinsert", (req, res) => {
 
 app.post("/api/insert", async (req, res) => {
     try {
-      const { courseName } = req.body;
-      const newTodo = await pool.query(
-        "INSERT INTO todo (description) VALUES($1) RETURNING *",
-        [courseName]
+      const { courseName, courseNumber } = req.body;
+      const newEntry = await pool.query(
+        `INSERT INTO entries (description, number) VALUES('${courseName}', ${courseNumber})`
       );
 
-      res.json(newTodo.rows[0]);
+      res.json(newEntry.rows[0]);
     } catch (err) {
       console.error(err.message);
     }
