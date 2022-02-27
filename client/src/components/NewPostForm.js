@@ -98,7 +98,9 @@ const NewPostForm = ({
         courseGrade,
         tag1,
         tag2,
-        tag3
+        tag3,
+        titleCourse,
+        courseYear
       };
       const response = await fetch("/api/insert", {
         method: "POST",
