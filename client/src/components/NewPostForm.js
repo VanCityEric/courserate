@@ -77,6 +77,7 @@ const NewPostForm = ({
 
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
+  let repeat = 1;
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -104,7 +105,8 @@ const NewPostForm = ({
         courseDay,
         courseMonth,
         courseFaculty,
-        courseTime
+        courseTime,
+        repeat
       };
       await fetch("/api/insert", {
         method: "POST",

@@ -49,7 +49,8 @@ app.get("/api/getAverages", (req, res) => {
   });
 });
 
-app.post("/api/averagesinsert", async (req, res) => {
+app.post("/api/averagesinsert", (req, res) => {
+
   try {
     const {
       courseName,
@@ -69,10 +70,11 @@ app.post("/api/averagesinsert", async (req, res) => {
       courseDay,
       courseMonth,
       courseFaculty,
-      courseTime
+      courseTime, 
+      repeat
     } = req.body;
     const newAv = await pool.query(
-      `INSERT INTO average (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating, course_comment, course_quality, course_grade, course_tag1, course_tag2, course_tag3, course_title, course_year, course_day, course_month, course_faculty, course_time) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating}, '${courseComments}', ${courseQuality}, '${courseGrade}', '${tag1}', '${tag2}', '${tag3}', '${titleCourse}', ${courseYear}, ${courseDay}, ${courseMonth}, '${courseFaculty}', ${courseTime})`
+      `INSERT INTO average (average_name, average_number, average_avg, average_workload, average_repeat, average_title, average_difficulty) SELECT '${courseName}', ${courseNumber}, ${courseQuality}, ${courseWorkload}, ${repeat}, '${titleCourse}', ${courseDifficulty} WHERE NOT EXISTS (SELECT 1 FROM average WHERE average_name = '${courseName})' AND average_number=${courseNumber})`
     );
 
     res.json(newAv.rows[0]);

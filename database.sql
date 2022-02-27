@@ -29,7 +29,6 @@ CREATE TABLE average(
     average_avg INT,
     average_workload INT,
     average_repeat INT,
-    average_prof VARCHAR(255),
     average_title VARCHAR(255)
 );
 
