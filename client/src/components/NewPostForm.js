@@ -271,8 +271,9 @@ const NewPostForm = ({
           <div className="row">
             <label htmlFor="comment">Comments</label>
             <input
+              className="input"
+              type="text"
               onBlur={(e) => setCourseComments(e.target.value)}
-              rows="6"
             ></input>
           </div>
           <div className="row tags-container">
