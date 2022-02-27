@@ -131,11 +131,11 @@ const NewPostForm = ({
         //       titleCourse.toLowerCase()
         //   )
         // ) {
-        await fetch("/api/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
+        // await fetch("/api/update", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify(body)
+        // });
         // } else {
         // await fetch("/api/averagesinsert", {
         //   method: "POST",
