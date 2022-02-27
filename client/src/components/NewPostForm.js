@@ -115,11 +115,11 @@ const NewPostForm = ({
         body: JSON.stringify(body)
       });
 
-      const responsetwo = await fetch("/api/averagesinsert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
+      // const responsetwo = await fetch("/api/averagesinsert", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(body)
+      // });
 
       window.location = "/";
     } catch (err) {
