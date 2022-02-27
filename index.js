@@ -93,7 +93,7 @@ app.post("/api/insert", async (req, res) => {
       const { courseName } = req.body;
       const newTodo = await pool.query(
         "INSERT INTO todo (description) VALUES($1) RETURNING *",
-        [description]
+        [courseName]
       );
 
       res.json(newTodo.rows[0]);
