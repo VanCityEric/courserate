@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 const NewPostForm = ({
   courseArray,
   difficultyArray,
@@ -8,6 +7,7 @@ const NewPostForm = ({
   profRateArray,
   facultyArray,
   setIsOpen,
+  averagesArray,
   entriesArray,
   filledForm,
   setFilledForm,
@@ -95,8 +95,7 @@ const NewPostForm = ({
       courseWorkload !== "" &&
       courseProfRating !== "" &&
       courseFaculty !== ""
-    )
-    {
+    ) {
       try {
         const body = {
           courseName,
@@ -105,8 +104,8 @@ const NewPostForm = ({
           courseDifficulty,
           courseWorkload,
           courseProfRating,
-          courseComments, 
-          courseQuality, 
+          courseComments,
+          courseQuality,
           courseGrade,
           tag1,
           tag2,
@@ -124,19 +123,26 @@ const NewPostForm = ({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         });
-  
-        await fetch("/api/averagesinsert", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-  
-        await fetch("/api/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-  
+
+        if (
+          averagesArray.some(
+            (entry) =>
+              entry.average_title.toString().toLowerCase() ===
+              query.toLowerCase()
+          )
+        ) {
+          await fetch("/api/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+        } else {
+          await fetch("/api/averagesinsert", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+        }
       } catch (err) {
         console.error(err.message);
       }
@@ -148,8 +154,6 @@ const NewPostForm = ({
       setIsOpen(true);
       setIsSuccessOpen(false);
     }
-    
-  
   };
 
   const [tagClassName, setTagClassName] = useState("tag");

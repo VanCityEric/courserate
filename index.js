@@ -112,7 +112,7 @@ app.post("/api/update", async (req, res) => {
       courseQuality
     } = req.body;
     const newUpdate = await pool.query(
-      `UPDATE average SET average_repeat = average_repeat + 1, average_avg = average_avg + ${courseQuality}, average_workload = average_workload + ${courseWorkload}, average_difficulty = average_difficulty + ${courseDifficulty} WHERE average_name='${courseName}' AND average_number=${courseNumber}`
+      `UPDATE average SET average_repeat = average_repeat + 1 WHERE average_name='${courseName}' AND average_number=${courseNumber}`
     );
 
     res.json(newUpdate.rows[0]);

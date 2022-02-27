@@ -14,6 +14,7 @@ const NewPost = ({
   setFilledForm,
   currentPageName,
   setIsSuccessOpen,
+  averagesArray,
   children
 }) => {
   if (!open) return null;
@@ -33,7 +34,8 @@ const NewPost = ({
             filledForm={filledForm}
             setFilledForm={setFilledForm}
             currentPageName={currentPageName}
-            setIsSuccessOpen={ setIsSuccessOpen}
+            setIsSuccessOpen={setIsSuccessOpen}
+            averagesArray={ averagesArray}
           />
         </div>
       </div>

@@ -79,7 +79,8 @@ const Nav = ({
         filledForm={filledForm}
         setFilledForm={setFilledForm}
         currentPageName={currentPageName}
-        setIsSuccessOpen={ setIsSuccessOpen}
+        setIsSuccessOpen={setIsSuccessOpen}
+        averagesArray={ averagesArray}
       />
     </React.Fragment>
   );
