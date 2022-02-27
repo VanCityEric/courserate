@@ -100,7 +100,6 @@ const NewPostForm = ({
     } catch (err) {
       console.error(err.message);
     }
-  };
 
     // try {
     //   const body = {
