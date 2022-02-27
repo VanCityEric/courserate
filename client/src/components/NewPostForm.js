@@ -124,24 +124,24 @@ const NewPostForm = ({
           body: JSON.stringify(body)
         });
 
-        // if (
+        // // if (
         //   averagesArray.some(
         //     (entry) =>
         //       entry.average_title.toString().toLowerCase() ===
         //       titleCourse.toLowerCase()
         //   )
         // ) {
-        //   await fetch("/api/update", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(body)
-        //   });
+        await fetch("/api/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
         // } else {
-        //   await fetch("/api/averagesinsert", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(body)
-        //   });
+        await fetch("/api/averagesinsert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
         // }
       } catch (err) {
         console.error(err.message);
