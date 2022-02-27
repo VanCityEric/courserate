@@ -89,16 +89,16 @@ app.post("/api/averagesinsert", (req, res) => {
 });
 
 app.post("/api/insert", async (req, res) => {
-    try {
-      const { courseName, courseNumber, courseProfessor } = req.body;
-      const newEntry = await pool.query(
-        `INSERT INTO entries (course_name, course_number, course_prof) VALUES('${courseName}', ${courseNumber}, '${courseProfessor})`
-      );
+  try {
+    const { courseName, courseNumber, courseProfessor } = req.body;
+    const newEntry = await pool.query(
+      `INSERT INTO entries (course_name, course_number, course_prof) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}')`
+    );
 
-      res.json(newEntry.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-    }
+    res.json(newEntry.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 
   // try {
   //   const {
@@ -121,7 +121,7 @@ app.post("/api/insert", async (req, res) => {
   //     courseDay,
   //     courseTime
   //   } = req.body;
-  //   const sqlInsert = `INSERT INTO entries 
+  //   const sqlInsert = `INSERT INTO entries
   //   (
   //     course_name,
   //     course_number,
@@ -142,7 +142,7 @@ app.post("/api/insert", async (req, res) => {
   //     course_time,
   //     course_faculty
   //   ) VALUES (
-  //     '${courseName}', 
+  //     '${courseName}',
   //     ${courseNumber},
   //     '${courseProfessor}',
   //     ${courseDifficulty},

@@ -28,7 +28,6 @@ const NewPostForm = ({
   const [courseComments, setCourseComments] = useState("");
   const [courseFaculty, setCourseFaculty] = useState("");
   const [courseQuality, setCourseQuality] = useState(0);
-  
 
   const onCancel = () => {
     setError("");
@@ -77,15 +76,13 @@ const NewPostForm = ({
   };
 
   let titleCourse = courseName + " " + courseNumber;
-    let date = new Date();
-   
+  let date = new Date();
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
     let courseTime = date.getTime();
-
 
     e.preventDefault();
     try {
@@ -122,7 +119,7 @@ const NewPostForm = ({
     //     courseDay,
     //     courseTime
     //   };
-    
+
     //   const response = await fetch("/api/insert", {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
