@@ -80,6 +80,8 @@ const NewPostFormFilled = ({
   let repeat = 1;
 
   const NewEntryHandler = async (e) => {
+    setCourseName(currentCourseName);
+    setCourseNumber(currentCourseNumber);
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
@@ -96,8 +98,8 @@ const NewPostFormFilled = ({
     ) {
       try {
         const body = {
-          currentCourseName,
-          currentCourseNumber,
+          courseName,
+          courseNumber,
           courseProfessor,
           courseDifficulty,
           courseWorkload,
