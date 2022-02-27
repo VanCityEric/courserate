@@ -3,9 +3,21 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const pool = require("./db");
+const path = require("path");
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "client/build")));
+
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 
 // ROUTES //
 
@@ -146,7 +158,10 @@ app.post("/api/update", (req, res) => {
   });
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
-app.listen(3001, () => {
-  console.log("Running on port 3001");
+app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
 });
