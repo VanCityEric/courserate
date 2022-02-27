@@ -90,9 +90,9 @@ app.post("/api/averagesinsert", (req, res) => {
 
 app.post("/api/insert", async (req, res) => {
   try {
-    const { courseName, courseNumber, courseProfessor, courseDifficulty  } = req.body;
+    const { courseName, courseNumber, courseProfessor, courseDifficulty, courseWorkload, courseProfRating } = req.body;
     const newEntry = await pool.query(
-      `INSERT INTO entries (course_name, course_number, course_prof, course_difficulty) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty})`
+      `INSERT INTO entries (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating})`
     );
 
     res.json(newEntry.rows[0]);
