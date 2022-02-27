@@ -149,9 +149,9 @@ app.post("/api/insert", (req, res) => {
       ${courseTime},
       '${courseFaculty}'
   
-    ) RETURNING *`;
+    )`;
     const newEntry = await pool.query(sqlInsert);
-    res.json(newEntry);
+    res.json(newEntry.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
