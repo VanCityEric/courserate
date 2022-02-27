@@ -78,7 +78,7 @@ const NewPostForm = ({
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
 
-  const NewEntryHandler = (e) => {
+  const NewEntryHandler = async (e) => {
     if (filledForm === true) {
       setCourseName(currentPageName);
     }
