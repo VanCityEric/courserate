@@ -105,9 +105,17 @@ const NewPostForm = ({
         courseDay,
         courseMonth,
         courseFaculty,
-        courseTime
+        courseTime,
+        repeat
       };
+
       const response = await fetch("/api/insert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      const responsetwo = await fetch("/api/averagesinsert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -118,26 +126,6 @@ const NewPostForm = ({
       console.error(err.message);
     }
 
-    try {
-      const averageEntry = {
-        courseName,
-        courseNumber,
-        courseQuality,
-        courseDifficulty,
-        courseWorkload,
-        titleCourse,
-        repeat
-      };
-      const response = await fetch("/api/averagesinsert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(averageEntry)
-      });
-
-      window.location = "/";
-    } catch (err) {
-      console.error(err.message);
-    }
   };
 
   const [tagClassName, setTagClassName] = useState("tag");
