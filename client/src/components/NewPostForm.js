@@ -84,68 +84,68 @@ const NewPostForm = ({
     }
     e.preventDefault();
    
-    
-    // if (
-    //   // courseName !== "" &&
-    //   courseQuality !== "" &&
-    //   courseNumber !== "" &&
-    //   courseProfessor !== "" &&
-    //   courseDifficulty !== "" &&
-    //   courseWorkload !== "" &&
-    //   courseProfRating !== "" &&
-    //   courseFaculty !== ""
-    // ) {
-    //   axios.post("/api/insert", {
-    //     courseName: courseName,
-    //     courseNumber: courseNumber,
-    //     courseProf: courseProfessor,
-    //     courseDifficulty: courseDifficulty,
-    //     courseWorkload: courseWorkload,
-    //     courseProfRating: courseProfRating,
-    //     courseComment: courseComments,
-    //     courseFaculty: courseFaculty,
-    //     courseQuality: courseQuality,
-    //     courseGrade: courseGrade,
-    //     courseTag1: tag1,
-    //     courseTag2: tag2,
-    //     courseTag3: tag3,
-    //     courseTitle: titleCourse,
-    //     courseYear: date.getFullYear(),
-    //     courseMonth: date.getMonth(),
-    //     courseDay: date.getDate(),
-    //     courseTime: date.getTime()
-    //   }).then(() => {
-    //     alert("success");
-    //   });
 
-    //   axios.post("/api/averagesinsert", {
-    //     averageName: courseName,
-    //     averageNumber: courseNumber,
-    //     averageAvg: courseQuality,
-    //     averageDifficulty: courseDifficulty,
-    //     averageWorkload: courseWorkload,
-    //     averageRepeat: 1,
-    //     averageProf: courseProfessor,
-    //     averageTitle: titleCourse,
-    //     averageTime: date.getTime()
-    //   });
+    if (
+      // courseName !== "" &&
+      courseQuality !== "" &&
+      courseNumber !== "" &&
+      courseProfessor !== "" &&
+      courseDifficulty !== "" &&
+      courseWorkload !== "" &&
+      courseProfRating !== "" &&
+      courseFaculty !== ""
+    ) {
+      axios.post("/api/insert", {
+        courseName: courseName,
+        courseNumber: courseNumber,
+        courseProf: courseProfessor,
+        courseDifficulty: courseDifficulty,
+        courseWorkload: courseWorkload,
+        courseProfRating: courseProfRating,
+        courseComment: courseComments,
+        courseFaculty: courseFaculty,
+        courseQuality: courseQuality,
+        courseGrade: courseGrade,
+        courseTag1: tag1,
+        courseTag2: tag2,
+        courseTag3: tag3,
+        courseTitle: titleCourse,
+        courseYear: date.getFullYear(),
+        courseMonth: date.getMonth(),
+        courseDay: date.getDate(),
+        courseTime: date.getTime()
+      }).then(() => {
+        alert("success");
+      });
 
-    //   axios.post("/api/update", {
-    //     updateName: courseName,
-    //     updateNumber: courseNumber,
-    //     updateProf: courseProfessor,
-    //     updateAvg: courseQuality,
-    //     updateWorkload: courseWorkload,
-    //     updateDifficulty: courseDifficulty
-    //   });
+      axios.post("/api/averagesinsert", {
+        averageName: courseName,
+        averageNumber: courseNumber,
+        averageAvg: courseQuality,
+        averageDifficulty: courseDifficulty,
+        averageWorkload: courseWorkload,
+        averageRepeat: 1,
+        averageProf: courseProfessor,
+        averageTitle: titleCourse,
+        averageTime: date.getTime()
+      });
 
-    //   setIsOpen(false);
-    //   setIsSuccessOpen(true);
-    // } else {
-    //   setError("Please fill in required fields.");
-    //   setIsOpen(true);
-    //   setIsSuccessOpen(false);
-    // }
+      axios.post("/api/update", {
+        updateName: courseName,
+        updateNumber: courseNumber,
+        updateProf: courseProfessor,
+        updateAvg: courseQuality,
+        updateWorkload: courseWorkload,
+        updateDifficulty: courseDifficulty
+      });
+
+      setIsOpen(false);
+      setIsSuccessOpen(true);
+    } else {
+      setError("Please fill in required fields.");
+      setIsOpen(true);
+      setIsSuccessOpen(false);
+    }
   };
 
 
