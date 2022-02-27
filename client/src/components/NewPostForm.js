@@ -79,7 +79,7 @@ const NewPostForm = ({
   let date = new Date();
   let repeat = 1;
 
-  const NewEntryHandler = async (e) => {
+  const NewEntryHandler = (e) => {
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
@@ -118,7 +118,7 @@ const NewPostForm = ({
           courseTime,
           repeat
         };
-        await fetch("/api/insert", {
+        fetch("/api/insert", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
