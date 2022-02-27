@@ -76,3 +76,44 @@ INSERT INTO entries
     'Communications'
 
   );
+
+  const sqlInsert = `INSERT INTO entries 
+    (
+      course_name,
+      course_number,
+      course_prof,
+      course_difficulty,
+      course_workload,
+      course_prof_rating,
+      course_comment,
+      course_quality,
+      course_grade,
+      course_tag1,
+      course_tag2,
+      course_tag3,
+      course_title,
+      course_year,
+      course_day,
+      course_month,
+      course_time,
+      course_faculty
+    ) VALUES (
+      '${courseName}', 
+      ${courseNumber},
+      '${courseProfessor}',
+      ${courseDifficulty},
+      ${courseWorkload},
+      ${courseProfRating},
+      '${courseComments}',
+      ${courseQuality},
+      '${courseGrade}',
+      '${tag1}',
+      '${tag2}',
+      '${tag3}',
+      '${titleCourse}',
+      ${courseYear},
+      ${courseDay},
+      ${courseMonth},
+      ${courseTime},
+      '${courseFaculty}'
+    )`;

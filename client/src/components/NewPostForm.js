@@ -22,12 +22,13 @@ const NewPostForm = ({
   const [courseName, setCourseName] = useState("");
   const [courseNumber, setCourseNumber] = useState(0);
   const [courseProfessor, setCourseProfessor] = useState("");
-  const [courseDifficulty, setCourseDifficulty] = useState(0);
+  const [courseDifficulty, setCourseDifficulty] = useState("");
   const [courseWorkload, setCourseWorkload] = useState(0);
   const [courseProfRating, setCourseProfRating] = useState(0);
   const [courseComments, setCourseComments] = useState("");
   const [courseFaculty, setCourseFaculty] = useState("");
   const [courseQuality, setCourseQuality] = useState(0);
+  
 
   const onCancel = () => {
     setError("");
@@ -35,6 +36,7 @@ const NewPostForm = ({
     setFilledForm(false);
   };
   const courseQualityHandler = (e) => {
+    console.log(courseQuality);
     if (e.target.value === "1 - avoid it all costs!") {
       setCourseQuality(1);
     } else if (e.target.value === "3 - just fine") {
@@ -84,6 +86,7 @@ const NewPostForm = ({
     let courseDay = date.getDate();
     let courseTime = date.getTime();
 
+
     e.preventDefault();
 
     try {
@@ -118,67 +121,7 @@ const NewPostForm = ({
       console.error(err.message);
     }
 
-    // if (
-    //   // courseName !== "" &&
-    //   courseQuality !== "" &&
-    //   courseNumber !== "" &&
-    //   courseProfessor !== "" &&
-    //   courseDifficulty !== "" &&
-    //   courseWorkload !== "" &&
-    //   courseProfRating !== "" &&
-    //   courseFaculty !== ""
-    // ) {
-    //   axios.post("/api/insert", {
-    //     courseName: courseName,
-    //     courseNumber: courseNumber,
-    //     courseProf: courseProfessor,
-    //     courseDifficulty: courseDifficulty,
-    //     courseWorkload: courseWorkload,
-    //     courseProfRating: courseProfRating,
-    //     courseComment: courseComments,
-    //     courseFaculty: courseFaculty,
-    //     courseQuality: courseQuality,
-    //     courseGrade: courseGrade,
-    //     courseTag1: tag1,
-    //     courseTag2: tag2,
-    //     courseTag3: tag3,
-    //     courseTitle: titleCourse,
-    //     courseYear: date.getFullYear(),
-    //     courseMonth: date.getMonth(),
-    //     courseDay: date.getDate(),
-    //     courseTime: date.getTime()
-    //   }).then(() => {
-    //     alert("success");
-    //   });
-
-    //   axios.post("/api/averagesinsert", {
-    //     averageName: courseName,
-    //     averageNumber: courseNumber,
-    //     averageAvg: courseQuality,
-    //     averageDifficulty: courseDifficulty,
-    //     averageWorkload: courseWorkload,
-    //     averageRepeat: 1,
-    //     averageProf: courseProfessor,
-    //     averageTitle: titleCourse,
-    //     averageTime: date.getTime()
-    //   });
-
-    //   axios.post("/api/update", {
-    //     updateName: courseName,
-    //     updateNumber: courseNumber,
-    //     updateProf: courseProfessor,
-    //     updateAvg: courseQuality,
-    //     updateWorkload: courseWorkload,
-    //     updateDifficulty: courseDifficulty
-    //   });
-
-    //   setIsOpen(false);
-    //   setIsSuccessOpen(true);
-    // } else {
-    //   setError("Please fill in required fields.");
-    //   setIsOpen(true);
-    //   setIsSuccessOpen(false);
-    // }
+   
   };
 
   const [tagClassName, setTagClassName] = useState("tag");

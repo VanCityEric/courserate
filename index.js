@@ -13,6 +13,11 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: false
   }
+  // user: "postgres",
+  // password: "kimeron123",
+  // host: "localhost",
+  // port: 5432,
+  // database: "courses"
 });
 
 app.use(cors());
@@ -85,7 +90,6 @@ app.post("/api/averagesinsert", (req, res) => {
 
 app.post("/api/insert", (req, res) => {
   try {
-    console.log(req.body);
     const {
       courseName,
       courseNumber,
