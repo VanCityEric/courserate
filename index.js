@@ -2,9 +2,20 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const pool = require("./db");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+
+
+require("dotenv").config();
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+
 
 app.use(cors());
 app.use(express.json());
