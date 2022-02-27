@@ -100,7 +100,11 @@ const NewPostForm = ({
         tag2,
         tag3,
         titleCourse,
-        courseYear
+        courseYear,
+        courseDay,
+        courseMonth,
+        courseFaculty,
+        courseTime
       };
       const response = await fetch("/api/insert", {
         method: "POST",
