@@ -128,7 +128,7 @@ const NewPostForm = ({
           averagesArray.some(
             (entry) =>
               entry.average_title.toString().toLowerCase() ===
-              query.toLowerCase()
+              titleCourse.toLowerCase()
           )
         ) {
           await fetch("/api/update", {
