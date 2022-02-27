@@ -13,7 +13,8 @@ const NewPostFormFilled = ({
   currentCourseName,
   currentCourseNumber,
   setIsFilledOpen,
-  setIsSuccessOpen
+  setIsSuccessOpen,
+  averagesArray
 }) => {
   const [error, setError] = useState("");
   const [courseGrade, setCourseGrade] = useState("");

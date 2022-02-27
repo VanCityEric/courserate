@@ -2,6 +2,10 @@ import React from "react";
 
 const PostSuccess = ({ isSuccessOpen, setIsSuccessOpen }) => {
   if (!isSuccessOpen) return null;
+  const successOpenHandler = () => {
+    setIsSuccessOpen(false);
+    window.location.reload(false);
+  };
   return (
     <div className="add-category-container dim">
       <div className="add-category-wrapper vertical-center">

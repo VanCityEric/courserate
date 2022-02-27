@@ -19,7 +19,8 @@ const NewPostFilled = ({
   id,
   courseName,
   courseNumber,
-  setIsSuccessOpen
+  setIsSuccessOpen,
+  averagesArray
 }) => {
   if (!isFilledOpen) return null;
   return (
@@ -44,7 +45,8 @@ const NewPostFilled = ({
             currentCourseNumber={courseNumber}
             isFilledOpen={isFilledOpen}
             setIsFilledOpen={setIsFilledOpen}
-            setIsSuccessOpen={ setIsSuccessOpen}
+            setIsSuccessOpen={setIsSuccessOpen}
+            averagesArray={ averagesArray}
           />
         </div>
       </div>

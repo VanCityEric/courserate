@@ -27,7 +27,6 @@ const CoursePageHeader = ({
   filledForm,
   currentPageName,
   setIsSuccessOpen
-
 }) => {
   let averageDifficulty = difficulty / repeat;
   let averageWorkload = workload / repeat;
@@ -86,7 +85,8 @@ const CoursePageHeader = ({
         id={id}
         courseName={courseName}
         courseNumber={courseNumber}
-        setIsSuccessOpen={ setIsSuccessOpen}
+        setIsSuccessOpen={setIsSuccessOpen}
+        averagesArray={averagesArray}
       />
       <div className="container">
         <div className="wrapper course-page-container">
