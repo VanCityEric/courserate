@@ -49,7 +49,7 @@ app.get("/api/getAverages", (req, res) => {
   });
 });
 
-app.post("/api/averagesinsert", (req, res) => {
+app.post("/api/averagesinsert", async (req, res) => {
 
   try {
     const {
