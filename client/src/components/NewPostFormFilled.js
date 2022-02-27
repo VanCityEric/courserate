@@ -87,8 +87,6 @@ const NewPostFormFilled = ({
 
     e.preventDefault();
     if (
-      courseName !== "" &&
-      courseQuality !== "" &&
       courseNumber !== "" &&
       courseProfessor !== "" &&
       courseDifficulty !== "" &&
