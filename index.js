@@ -90,8 +90,7 @@ app.post("/api/insert", (req, res) => {
     console.log(req.body);
     const { description } = req.body;
     pool.query(
-      "INSERT INTO todo (description) VALUES ($1) RETURNING *",
-      [description]
+      "INSERT INTO todo (description) VALUES ('98')",
     );
   } catch (err) {
     console.error(err.message);
