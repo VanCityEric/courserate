@@ -120,6 +120,12 @@ const NewPostForm = ({
         body: JSON.stringify(body)
       });
 
+      await fetch("/api/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
       window.location = "/";
     } catch (err) {
       console.error(err.message);

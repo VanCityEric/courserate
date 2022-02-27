@@ -50,27 +50,14 @@ app.get("/api/getAverages", (req, res) => {
 });
 
 app.post("/api/averagesinsert", async (req, res) => {
-
   try {
     const {
       courseName,
       courseNumber,
-      courseProfessor,
       courseDifficulty,
       courseWorkload,
-      courseProfRating, 
-      courseComments,
       courseQuality,
-      courseGrade,
-      tag1,
-      tag2,
-      tag3,
       titleCourse,
-      courseYear,
-      courseDay,
-      courseMonth,
-      courseFaculty,
-      courseTime, 
       repeat
     } = req.body;
     const newAv = await pool.query(
@@ -81,42 +68,6 @@ app.post("/api/averagesinsert", async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-  // const averageName = req.body.averageName;
-  // const averageNumber = req.body.averageNumber;
-  // const averageAvg = req.body.averageAvg;
-  // const averageWorkload = req.body.averageWorkload;
-  // const averageRepeat = req.body.averageRepeat;
-  // const averageProf = req.body.averageProf;
-  // const averageTitle = req.body.averageTitle;
-  // const averageDifficulty = req.body.averageDifficulty;
-
-  // const sqlInsert = `INSERT INTO average 
-  // (
-  //   average_name,
-  //   average_number,
-  //   average_avg,
-  //   average_workload,
-  //   average_repeat,
-  //   average_prof,
-  //   average_title,
-  //   average_difficulty
-
-  // ) SELECT 
-  //   '${averageName}',
-  //   ${averageNumber},
-  //   ${averageAvg},
-  //   ${averageWorkload},
-  //   ${averageRepeat},
-  //   '${averageProf}',
-  //   '${averageTitle}',
-  //   ${averageDifficulty}
-  //   WHERE NOT EXISTS (
-  //     SELECT 1 FROM average WHERE average_name='${averageName}' AND average_number=${averageNumber}
-  //   )
-  // `;
-  // pool.query(sqlInsert, (err, result) => {
-  //   console.log(err);
-  // });
 });
 
 app.post("/api/insert", async (req, res) => {
@@ -127,7 +78,7 @@ app.post("/api/insert", async (req, res) => {
       courseProfessor,
       courseDifficulty,
       courseWorkload,
-      courseProfRating, 
+      courseProfRating,
       courseComments,
       courseQuality,
       courseGrade,
@@ -151,16 +102,23 @@ app.post("/api/insert", async (req, res) => {
   }
 });
 
-app.post("/api/update", (req, res) => {
-  const updateName = req.body.updateName;
-  const updateNumber = req.body.updateNumber;
-  const updateAvg = req.body.updateAvg;
-  const updateWorkload = req.body.updateWorkload;
-  const updateDifficulty = req.body.updateDifficulty;
-  const sqlUpdate = `UPDATE average SET average_repeat = average_repeat + 1, average_avg = average_avg + ${updateAvg}, average_workload = average_workload + ${updateWorkload}, average_difficulty = average_difficulty + ${updateDifficulty} WHERE average_name='${updateName}' AND average_number=${updateNumber}`;
-  pool.query(sqlUpdate, (err, result) => {
-    console.log(err);
-  });
+app.post("/api/update", async (req, res) => {
+  try {
+    const {
+      courseName,
+      courseNumber,
+      courseDifficulty,
+      courseWorkload,
+      courseQuality
+    } = req.body;
+    const newUpdate = await pool.query(
+      `UPDATE average SET average_repeat = average_repeat + 1, average_avg = average_avg + ${courseQuality}, average_workload = average_workload + ${courseWorkload}, average_difficulty = average_difficulty + ${courseDifficulty} WHERE average_name='${courseName}' AND average_number=${courseNumber}`
+    );
+
+    res.json(newUpdate.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.get("*", (req, res) => {
