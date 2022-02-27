@@ -36,6 +36,8 @@ const NewPostFormFilled = ({
     setIsFilledOpen(false);
   };
   const courseQualityHandler = (e) => {
+    setCourseName(currentCourseName);
+    setCourseNumber(currentCourseNumber);
     if (e.target.value === "1 - avoid it all costs!") {
       setCourseQuality(1);
     } else if (e.target.value === "3 - just fine") {
@@ -80,8 +82,7 @@ const NewPostFormFilled = ({
   let repeat = 1;
 
   const NewEntryHandler = async (e) => {
-    setCourseName(currentCourseName);
-    setCourseNumber(currentCourseNumber);
+    
     let courseYear = date.getFullYear();
     let courseMonth = date.getMonth();
     let courseDay = date.getDate();
