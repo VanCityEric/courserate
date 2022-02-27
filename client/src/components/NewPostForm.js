@@ -84,8 +84,7 @@ const NewPostForm = ({
     e.preventDefault();
 
     try {
-      const body = { courseName };
-      const numbery = { courseNumber };
+      const body = { courseName, courseNumber };
       //proxy is only use in development so it will be ignored in production
       //so if there is no http://localhost:5000 then by default it is going to use heroku domain
       //remember this heroku app is just our server serving the build static content and also holding the restful api
@@ -94,7 +93,7 @@ const NewPostForm = ({
       const response = await fetch("/api/insert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body, numbery)
+        body: JSON.stringify(body)
       });
     } catch (err) {
       console.error(err.message);
