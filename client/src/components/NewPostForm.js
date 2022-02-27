@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Axios from "axios";
 
-const NewPostForm = ({
+const NewPostFormFilled = ({
   courseArray,
   difficultyArray,
   workloadArray,
@@ -11,6 +12,10 @@ const NewPostForm = ({
   filledForm,
   setFilledForm,
   currentPageName,
+  id,
+  currentCourseName,
+  currentCourseNumber,
+  setIsFilledOpen,
   setIsSuccessOpen
 }) => {
   const [error, setError] = useState("");
@@ -19,22 +24,21 @@ const NewPostForm = ({
   const [tag2, setTag2] = useState("");
   const [tag3, setTag3] = useState("");
   const [courseName, setCourseName] = useState("");
-  const [courseNumber, setCourseNumber] = useState(0);
+  const [courseNumber, setCourseNumber] = useState();
   const [courseProfessor, setCourseProfessor] = useState("");
   const [courseDifficulty, setCourseDifficulty] = useState("");
-  const [courseWorkload, setCourseWorkload] = useState(0);
-  const [courseProfRating, setCourseProfRating] = useState(0);
+  const [courseWorkload, setCourseWorkload] = useState("");
+  const [courseProfRating, setCourseProfRating] = useState("");
   const [courseComments, setCourseComments] = useState("");
   const [courseFaculty, setCourseFaculty] = useState("");
-  const [courseQuality, setCourseQuality] = useState(0);
+  const [courseQuality, setCourseQuality] = useState("");
 
-  const onCancel = () => {
+  const onCancel = (e) => {
+    e.preventDefault();
     setError("");
-    setIsOpen(false);
-    setFilledForm(false);
+    setIsFilledOpen(false);
   };
   const courseQualityHandler = (e) => {
-    console.log(courseQuality);
     if (e.target.value === "1 - avoid it all costs!") {
       setCourseQuality(1);
     } else if (e.target.value === "3 - just fine") {
@@ -74,19 +78,17 @@ const NewPostForm = ({
     }
   };
 
-  let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
-  let repeat = 1;
 
-  const NewEntryHandler = async (e) => {
-    let courseYear = date.getFullYear();
-    let courseMonth = date.getMonth();
-    let courseDay = date.getDate();
-    let courseTime = date.getTime();
+
+  const NewEntryHandler = (e) => {
+    if (filledForm === true) {
+      setCourseName(currentPageName);
+    }
 
     e.preventDefault();
     if (
-      courseName !== "" &&
+      // courseName !== "" &&
       courseQuality !== "" &&
       courseNumber !== "" &&
       courseProfessor !== "" &&
@@ -94,61 +96,61 @@ const NewPostForm = ({
       courseWorkload !== "" &&
       courseProfRating !== "" &&
       courseFaculty !== ""
-    )
-    {
-      try {
-        const body = {
-          courseName,
-          courseNumber,
-          courseProfessor,
-          courseDifficulty,
-          courseWorkload,
-          courseProfRating,
-          courseComments, 
-          courseQuality, 
-          courseGrade,
-          tag1,
-          tag2,
-          tag3,
-          titleCourse,
-          courseYear,
-          courseDay,
-          courseMonth,
-          courseFaculty,
-          courseTime,
-          repeat
-        };
-        await fetch("/api/insert", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-  
-        await fetch("/api/averagesinsert", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-  
-        await fetch("/api/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-  
-        window.location = "/";
-      } catch (err) {
-        console.error(err.message);
-      }
-      setError("");
-      setIsOpen(false);
+    ) {
+      Axios.post("http://localhost:3001/api/insert", {
+        courseName: currentCourseName,
+        courseNumber: currentCourseNumber,
+        courseProf: courseProfessor,
+        courseDifficulty: courseDifficulty,
+        courseWorkload: courseWorkload,
+        courseProfRating: courseProfRating,
+        courseComment: courseComments,
+        courseFaculty: courseFaculty,
+        courseQuality: courseQuality,
+        courseGrade: courseGrade,
+        courseTag1: tag1,
+        courseTag2: tag2,
+        courseTag3: tag3,
+        courseTitle: id,
+        courseYear: date.getFullYear(),
+        courseMonth: date.getMonth(),
+        courseDay: date.getDate(),
+        courseTime: date.getTime()
+      }).then(() => {
+        alert("success");
+      });
+
+      Axios.post("http://localhost:3001/api/averagesinsert", {
+        averageName: currentCourseName,
+        averageNumber: currentCourseNumber,
+        averageAvg: courseQuality,
+        averageDifficulty: courseDifficulty,
+        averageWorkload: courseWorkload,
+        averageRepeat: 1,
+        averageProf: courseProfessor,
+        averageTitle: id,
+        averageTime: date.getTime()
+      });
+
+      Axios.post("http://localhost:3001/api/update", {
+        updateName: currentCourseName,
+        updateNumber: currentCourseNumber,
+        updateProf: courseProfessor,
+        updateAvg: courseQuality,
+        updateWorkload: courseWorkload,
+        updateDifficulty: courseDifficulty
+      });
+
+      setIsFilledOpen(false);
+      setIsSuccessOpen(true);
     } else {
       setError("Please fill in required fields.");
-      setIsOpen(true);
+      setIsFilledOpen(true);
+      setIsSuccessOpen(false);
     }
-    
-  
   };
+
+
 
   const [tagClassName, setTagClassName] = useState("tag");
   const tagHandler = (e) => {
@@ -181,33 +183,6 @@ const NewPostForm = ({
         <form>
           <p className="form-divider">COURSE DETAILS</p>
           <div className="row">
-            <div className="col1">
-              <label htmlFor="course-name">*Course</label>
-              <select
-                onChange={(e) => setCourseName(e.target.value)}
-                id="course-name"
-                className="course-name select-form"
-                name="course-name"
-                defaultValue={courseNameValue}
-              >
-                <option>Choose course</option>
-                {courseArray.map((course) => (
-                  <option>{course}</option>
-                ))}
-              </select>
-            </div>
-            <div className="col2">
-              <label htmlFor="course-number">*Course number</label>
-              <input
-                onChange={(e) => setCourseNumber(e.target.value)}
-                id="course-number"
-                className="input"
-                type="text"
-                placeholder='e.g. "225"'
-                size="13"
-              ></input>
-            </div>
-
             <div className="col3">
               <label htmlFor="course-number">*Professor</label>
               <input
@@ -442,4 +417,4 @@ const NewPostForm = ({
   );
 };
 
-export default NewPostForm;
+export default NewPostFormFilled;
