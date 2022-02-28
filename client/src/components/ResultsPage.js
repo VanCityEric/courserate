@@ -23,6 +23,7 @@ const ResultsPage = ({
   return (
     <div className="container results-container">
       <div className="results-wrapper wrapper">
+       
         <ResultsHeader currentSearchValue={id} />
         <SearchForm
           averagesArray={averagesArray}
@@ -32,7 +33,7 @@ const ResultsPage = ({
           setSearchName={setSearchName}
           searchName={searchName}
         />
-
+      <div className="section-wrapper">
         {averagesArray
           .sort((a, b) => (a.average_title > b.average_title? 1 : -1))
           .filter((entry) => {
@@ -50,6 +51,7 @@ const ResultsPage = ({
           .map((entry) => (
             <SearchEntries averagesArray={averagesArray} entry={entry} />
           ))}
+          </div>
       </div>
     </div>
   );

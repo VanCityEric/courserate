@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 const Entries = ({
   courseName,
@@ -20,11 +22,12 @@ const Entries = ({
   tag1,
   tag2,
   tag3,
+  thumbsUp,
+  thumbsDown,
   averagesArray,
-  entriesArray
+  entriesArray,
+  courseId,
 }) => {
-
-
   const monthNames = [
     "Jan",
     "Feb",
@@ -40,9 +43,15 @@ const Entries = ({
     "Dec"
   ];
 
+  useEffect(() => {
+    setThumbsUpNumber(thumbsUp);
+  }, [thumbsUp]);
+
   let qualityClassName = "thumbs table";
   let difficultyClassName = "thumbs table";
   let workloadClassName = "thumbs table";
+  const [thumbsUpNumber, setThumbsUpNumber] = useState(1);
+  const [thumbsUpClicked, setThumbsUpClicked] = useState(false);
 
   let userScore = courseLike.toFixed(1);
   let difficultyScore = difficulty.toFixed(1);
@@ -55,6 +64,20 @@ const Entries = ({
   } else if (courseLike > 3) {
     qualityClassName += " green";
   }
+
+  React.useEffect(() => {
+    const data = localStorage.getItem("thumbsUpState");
+    if (data) {
+      setThumbsUpClicked(JSON.parse(data));
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const stateInfo = JSON.stringify(thumbsUpClicked);
+    if (stateInfo) {
+      localStorage.setItem("thumbsUpState", stateInfo);
+    }
+  }, [thumbsUpClicked]);
 
   // if (difficultyScore > 3) {
   //   difficultyClassName += " red";
@@ -77,6 +100,31 @@ const Entries = ({
     e.preventDefault();
     navigate(`/course/${title}`);
   };
+
+  const thumbsUpHandler = async () => {
+    if (thumbsUpClicked === false) {
+      setThumbsUpClicked(true);
+    } else  {
+      setThumbsUpClicked(false)
+    }
+
+    setThumbsUpNumber(thumbsUpNumber + 1);
+    try {
+      const body = {
+        courseId,
+        thumbsUpNumber
+      };
+      await fetch("/api/incrementThumbsUp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  console.log(thumbsUpClicked);
+  console.log(thumbsUpNumber);
 
   return (
     <div className="recent-entries entries row section-wrapper">
@@ -132,16 +180,17 @@ const Entries = ({
           <span className="entry-tags">{tag3}</span>
           <div className="bottom-row-container">
             <div className="row review-bottom-row">
-              <div className="col2">
+              <div className="col2 major">
                 <p>
                   Major: <span className="bold">{faculty}</span>
                 </p>
               </div>
-              <div className="col2">
+              <div className="col2 grade-received">
                 <p>
                   Grade received: <span className="bold">{grade}</span>
                 </p>
               </div>
+            
             </div>
           </div>
         </div>

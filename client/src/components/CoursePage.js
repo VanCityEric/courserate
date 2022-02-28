@@ -25,7 +25,8 @@ const CoursePage = ({
   const { id } = useParams();
   return (
     <React.Fragment>
-      {averagesArray.filter((entry) => {
+      {averagesArray
+        .filter((entry) => {
           if (
             !entry.average_title
               .toString()
@@ -65,44 +66,46 @@ const CoursePage = ({
             setIsSuccessOpen={setIsSuccessOpen}
           />
         ))}
-      {entriesArray
-        .sort((a, b) => (a.course_time < b.course_time ? 1 : -1))
-        .filter((entry) => {
-          if (
-            !entry.course_title
-              .toString()
-              .toLowerCase()
-              .includes(id.toString().toLowerCase())
-          ) {
-            return null;
-          } else {
-            return entry;
-          }
-        })
-        .map((entry) => (
-          <Entries
-            courseName={entry.course_name}
-            courseNumber={entry.course_number}
-            professor={entry.course_prof}
-            difficulty={entry.course_difficulty}
-            workload={entry.course_workload}
-            profRating={entry.course_prof_rating}
-            comments={entry.course_comment}
-            faculty={entry.course_faculty}
-            day={entry.course_day}
-            month={entry.course_month}
-            year={entry.course_year}
-            time={entry.course_time}
-            title={entry.course_title}
-            grade={entry.course_grade}
-            tag1={entry.course_tag1}
-            tag2={entry.course_tag2}
-            tag3={entry.course_tag3}
-            courseLike={entry.course_quality}
-            entriesArray={entriesArray}
-            averagesArray={averagesArray}
-          />
-        ))}
+      <div className="course-entries-container">
+        {entriesArray
+          .sort((a, b) => (a.course_time < b.course_time ? 1 : -1))
+          .filter((entry) => {
+            if (
+              !entry.course_title
+                .toString()
+                .toLowerCase()
+                .includes(id.toString().toLowerCase())
+            ) {
+              return null;
+            } else {
+              return entry;
+            }
+          })
+          .map((entry) => (
+            <Entries
+              courseName={entry.course_name}
+              courseNumber={entry.course_number}
+              professor={entry.course_prof}
+              difficulty={entry.course_difficulty}
+              workload={entry.course_workload}
+              profRating={entry.course_prof_rating}
+              comments={entry.course_comment}
+              faculty={entry.course_faculty}
+              day={entry.course_day}
+              month={entry.course_month}
+              year={entry.course_year}
+              time={entry.course_time}
+              title={entry.course_title}
+              grade={entry.course_grade}
+              tag1={entry.course_tag1}
+              tag2={entry.course_tag2}
+              tag3={entry.course_tag3}
+              courseLike={entry.course_quality}
+              entriesArray={entriesArray}
+              averagesArray={averagesArray}
+            />
+          ))}
+      </div>
     </React.Fragment>
   );
 };

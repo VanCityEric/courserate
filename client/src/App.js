@@ -11,6 +11,7 @@ import {
 import NewPage from "./components/ResultsPage";
 import ResultsPage from "./components/ResultsPage";
 import CoursePage from "./components/CoursePage";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [dashboardHeader, setDashboardHeader] = useState(
@@ -141,8 +142,9 @@ const App = () => {
   const [filledForm, setFilledForm] = useState(false);
   const [currentPageName, setCurrentPageName] = useState("");
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
+
   console.log(filledForm);
- 
 
   const getEntries = async () => {
     try {
@@ -198,101 +200,105 @@ const App = () => {
     }
   });
 
+  
   return (
     <React.Fragment>
-      <Router>
-        <Nav
-          setDashboardHeader={setDashboardHeader}
-          courseArray={courseArray}
-          difficultyArray={difficultyArray}
-          workloadArray={workloadArray}
-          profRateArray={profRateArray}
-          facultyArray={facultyArray}
-          entriesArray={entriesArray}
-          setEntriesArray={setEntriesArray}
-          coursesArray={coursesArray}
-          setCoursesArray={setCoursesArray}
-          averagesArray={averagesArray}
-          setAveragesArray={setAveragesArray}
-          searchArray={searchArray}
-          setSearchArray={setSearchArray}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-          filledForm={filledForm}
-          setFilledForm={setFilledForm}
-          currentPageName={currentPageName}
-          setIsSuccessOpen={setIsSuccessOpen}
-
-        />
-        <div className="content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Dashboard
-                  dashboardHeader={dashboardHeader}
-                  setDashboardHeader={setDashboardHeader}
-                  setEntriesArray={setEntriesArray}
-                  entriesArray={entriesArray}
-                  averagesArray={averagesArray}
-                  searchArray={searchArray}
-                  setResultsHeader={setResultsHeader}
-                  currentSearchValue={currentSearchValue}
-                  setCurrentSearchValue={setCurrentSearchValue}
-                  setSearchName={setSearchName}
-                  searchName={searchName}
-                />
-              }
-            />
-            <Route
-              exact
-              path={"/search/:id"}
-              element={
-                <ResultsPage
-                  dashboardHeader={dashboardHeader}
-                  resultsHeader={resultsHeader}
-                  currentSearchValue={currentSearchValue}
-                  entriesArray={entriesArray}
-                  searchArray={searchArray}
-                  averagesArray={averagesArray}
-                  setSearchName={setSearchName}
-                  searchName={searchName}
-                  setCurrentSearchValue={setCurrentSearchValue}
-                />
-              }
-            />
-            <Route
-              exact
-              path={"/course/:id"}
-              element={
-                <CoursePage
-                  averagesArray={averagesArray}
-                  entriesArray={entriesArray}
-                  searchArray={searchArray}
-                  setIsOpen={setIsOpen}
-                  setFilledForm={setFilledForm}
-                  setCurrentPageName={setCurrentPageName}
-                  setIsFilledOpen={setIsFilledOpen}
-                  isFilledOpen={isFilledOpen}
-                  isOpen={isOpen}
-                  difficultyArray={difficultyArray}
-                  workloadArray={workloadArray}
-                  profRateArray={profRateArray}
-                  facultyArray={facultyArray}
-                  filledForm={filledForm}
-                  currentPageName={currentPageName}
-                  courseArray={courseArray}
-                  setIsSuccessOpen={setIsSuccessOpen}
-                />
-              }
-            />
-          </Routes>
-          <PostSuccess
-            isSuccessOpen={isSuccessOpen}
+      <div className="entire-wrapper">
+        <Router>
+          <Nav
+            setDashboardHeader={setDashboardHeader}
+            courseArray={courseArray}
+            difficultyArray={difficultyArray}
+            workloadArray={workloadArray}
+            profRateArray={profRateArray}
+            facultyArray={facultyArray}
+            entriesArray={entriesArray}
+            setEntriesArray={setEntriesArray}
+            coursesArray={coursesArray}
+            setCoursesArray={setCoursesArray}
+            averagesArray={averagesArray}
+            setAveragesArray={setAveragesArray}
+            searchArray={searchArray}
+            setSearchArray={setSearchArray}
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            filledForm={filledForm}
+            setFilledForm={setFilledForm}
+            currentPageName={currentPageName}
             setIsSuccessOpen={setIsSuccessOpen}
           />
-        </div>
-      </Router>
+          <div className="content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Dashboard
+                    dashboardHeader={dashboardHeader}
+                    setDashboardHeader={setDashboardHeader}
+                    setEntriesArray={setEntriesArray}
+                    entriesArray={entriesArray}
+                    averagesArray={averagesArray}
+                    searchArray={searchArray}
+                    setResultsHeader={setResultsHeader}
+                    currentSearchValue={currentSearchValue}
+                    setCurrentSearchValue={setCurrentSearchValue}
+                    setSearchName={setSearchName}
+                    searchName={searchName}
+    
+                  />
+                }
+              />
+              <Route
+                exact
+                path={"/search/:id"}
+                element={
+                  <ResultsPage
+                    dashboardHeader={dashboardHeader}
+                    resultsHeader={resultsHeader}
+                    currentSearchValue={currentSearchValue}
+                    entriesArray={entriesArray}
+                    searchArray={searchArray}
+                    averagesArray={averagesArray}
+                    setSearchName={setSearchName}
+                    searchName={searchName}
+                    setCurrentSearchValue={setCurrentSearchValue}
+                  />
+                }
+              />
+              <Route
+                exact
+                path={"/course/:id"}
+                element={
+                  <CoursePage
+                    averagesArray={averagesArray}
+                    entriesArray={entriesArray}
+                    searchArray={searchArray}
+                    setIsOpen={setIsOpen}
+                    setFilledForm={setFilledForm}
+                    setCurrentPageName={setCurrentPageName}
+                    setIsFilledOpen={setIsFilledOpen}
+                    isFilledOpen={isFilledOpen}
+                    isOpen={isOpen}
+                    difficultyArray={difficultyArray}
+                    workloadArray={workloadArray}
+                    profRateArray={profRateArray}
+                    facultyArray={facultyArray}
+                    filledForm={filledForm}
+                    currentPageName={currentPageName}
+                    courseArray={courseArray}
+                    setIsSuccessOpen={setIsSuccessOpen}
+                  />
+                }
+              />
+            </Routes>
+            <PostSuccess
+              isSuccessOpen={isSuccessOpen}
+              setIsSuccessOpen={setIsSuccessOpen}
+            />
+          </div>
+        </Router>
+      </div>
+      <Footer />
     </React.Fragment>
   );
 };

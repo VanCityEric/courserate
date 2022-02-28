@@ -14,9 +14,9 @@ const Dashboard = ({
   currentSearchValue,
   searchName,
   setSearchName,
-  setCurrentSearchValue
-}) => {
+  setCurrentSearchValue,
 
+}) => {
   return (
     <React.Fragment>
       <div className="dashboard-container container">
@@ -58,6 +58,10 @@ const Dashboard = ({
                     tag3={entry.course_tag3}
                     entriesArray={entriesArray}
                     averagesArray={averagesArray}
+                    thumbsUp={entry.course_thumbs_up}
+                    thumbsDown={entry.course_thumbs_down}
+                    courseId={entry.entry_id}
+              
                   />
                 ))}
             </div>

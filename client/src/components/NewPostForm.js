@@ -29,7 +29,6 @@ const NewPostForm = ({
   const [courseFaculty, setCourseFaculty] = useState("");
   const [courseQuality, setCourseQuality] = useState(0);
 
-
   const onCancel = () => {
     setError("");
     setIsOpen(false);
@@ -85,6 +84,7 @@ const NewPostForm = ({
   let titleCourse = courseName + " " + courseNumber;
   let date = new Date();
   let repeat = 1;
+  let thumbs = 0;
 
   const NewEntryHandler = async (e) => {
     let courseYear = date.getFullYear();
@@ -123,7 +123,8 @@ const NewPostForm = ({
           courseMonth,
           courseFaculty,
           courseTime,
-          repeat
+          repeat, 
+          thumbs
         };
         await fetch("/api/insert", {
           method: "POST",

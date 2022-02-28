@@ -90,10 +90,11 @@ app.post("/api/insert", async (req, res) => {
       courseDay,
       courseMonth,
       courseFaculty,
-      courseTime
+      courseTime,
+      thumbs
     } = req.body;
     const newEntry = await pool.query(
-      `INSERT INTO entries (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating, course_comment, course_quality, course_grade, course_tag1, course_tag2, course_tag3, course_title, course_year, course_day, course_month, course_faculty, course_time) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating}, '${courseComments}', ${courseQuality}, '${courseGrade}', '${tag1}', '${tag2}', '${tag3}', '${titleCourse}', ${courseYear}, ${courseDay}, ${courseMonth}, '${courseFaculty}', ${courseTime})`
+      `INSERT INTO entries (course_name, course_number, course_prof, course_difficulty, course_workload, course_prof_rating, course_comment, course_quality, course_grade, course_tag1, course_tag2, course_tag3, course_title, course_year, course_day, course_month, course_faculty, course_time, course_thumbs_up, course_thumbs_down) VALUES('${courseName}', ${courseNumber}, '${courseProfessor}', ${courseDifficulty}, ${courseWorkload}, ${courseProfRating}, '${courseComments}', ${courseQuality}, '${courseGrade}', '${tag1}', '${tag2}', '${tag3}', '${titleCourse}', ${courseYear}, ${courseDay}, ${courseMonth}, '${courseFaculty}', ${courseTime}, ${thumbs}, ${thumbs})`
     );
 
     res.json(newEntry.rows[0]);
@@ -113,6 +114,19 @@ app.post("/api/update", async (req, res) => {
     } = req.body;
     const newUpdate = await pool.query(
       `UPDATE average SET average_repeat = average_repeat + 1, average_avg = average_avg + ${courseQuality}, average_workload = average_workload + ${courseWorkload}, average_difficulty = average_difficulty + ${courseDifficulty} WHERE average_name='${courseName}' AND average_number=${courseNumber}`
+    );
+
+    res.json(newUpdate.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.post("/api/incrementThumbsUp", async (req, res) => {
+  try {
+    const { courseId, thumbsUpNumber } = req.body;
+    const newUpdate = await pool.query(
+      `UPDATE entries SET course_thumbs_up = course_thumbs_up + 1 WHERE entry_id = ${courseId}`
     );
 
     res.json(newUpdate.rows[0]);

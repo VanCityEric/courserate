@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
 * {
   font-family: "Sailec", "Noto Sans", sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.entire-wrapper {
+  min-height: calc(100vh - 40px);
+  z-index: 10000;
 }
 
 .hide {
@@ -26,7 +31,7 @@
   z-index: 0;
   position: fixed;
   display: inline;
-  background-color: rgb(12, 12, 12);
+  background-color: black;
   padding: 0px 20px 0px 20px;
   z-index: 3000;
   margin-top: -59px !important;
@@ -62,7 +67,7 @@ nav {
 
 .nav-links li:hover {
   cursor: pointer;
-  color: rgb(140, 0, 255)
+  color: rgb(140, 0, 255);
 }
 
 .btn {
@@ -173,8 +178,9 @@ nav {
   border-radius: 100px;
   font-size: 0.9em;
   outline: none;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
   appearance: none;
+  width: 290px;
 }
 
 .select-wrapper {
@@ -204,7 +210,7 @@ nav {
 }
 
 .dashboard-header p {
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: rgb(190, 190, 190);
 }
 
@@ -218,10 +224,13 @@ nav {
   background-repeat: no-repeat;
   background-position-y: center;
   background-size: 11em;
-  background-position-x: 87px;
-
+  background-position-x: 107px;
 }
 
+.results-container {
+  margin-bottom: 40px;
+  background-color: red;
+}
 
 .results-header-container h2 {
   font-size: 3em;
@@ -403,7 +412,7 @@ textarea {
 }
 
 .search-entries-container {
-  padding: 50px;
+  padding: 50px 0px;
 }
 
 .search-entries-container .entries:hover {
@@ -469,6 +478,11 @@ textarea {
   text-align: center;
 }
 
+.recent-entries-container {
+  max-height: 2080px;
+  overflow: hidden;
+}
+
 .recent-entries {
   width: 1000px !important;
 }
@@ -501,9 +515,12 @@ textarea {
   color: rgb(140, 0, 255);
 }
 
+
+
 .review-text-section {
   padding: 35px;
   width: 867px;
+
 }
 
 .review-like-section {
@@ -522,6 +539,26 @@ textarea {
 .review-bottom-row {
   position: absolute;
   bottom: 0;
+  width: 100%;
+}
+
+.thumbsupdown {
+  float: right!important;
+  color:rgb(185, 185, 185);
+  cursor: pointer;
+}
+
+.thumbs-green {
+  color: green;
+}
+
+.thumbs-red {
+  color: rednmm;
+}
+
+.thumbs-number {
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .bottom-row-container {
@@ -546,10 +583,9 @@ textarea {
   border-radius: 100px;
   margin-right: 20px;
   color: rgb(17, 17, 17);
-  color:rgb(140, 0, 255);
+  color: rgb(140, 0, 255);
   /* border: 1px solid rgb(221, 221, 221); */
   font-weight: 700;
-
 }
 
 .thumbs {
@@ -590,7 +626,6 @@ textarea {
 
 .date {
   font-weight: 700;
-  
 }
 
 .tag {
@@ -724,6 +759,10 @@ textarea {
   font-size: 1.3em;
 }
 
+.course-entries-container {
+  margin-bottom: 100px !important;
+}
+
 .out-of-five {
   color: gray;
 }
@@ -741,4 +780,34 @@ textarea {
 
 .cp-overall-text {
   height: 70px;
+}
+
+.footer-container {
+  background-color: black;
+  padding: 20px 0px;
+  margin-top: 50px;
+  position: relative;
+  bottom: 0px;
+}
+
+.footer-row {
+  margin-bottom: 0px;
+}
+
+.footer {
+  width: 1200px;
+  margin: 0 auto;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.footer-col {
+  width: 32.5%;
 }
