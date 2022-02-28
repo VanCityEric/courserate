@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
 * {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Sailec", "Noto Sans", sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -25,12 +25,16 @@
   width: 100%;
   z-index: 0;
   position: fixed;
-  background-color: white;
   display: inline;
   background-color: rgb(12, 12, 12);
   padding: 0px 20px 0px 20px;
   z-index: 3000;
   margin-top: -59px !important;
+}
+
+nav {
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .nav-links {
@@ -190,7 +194,7 @@
 }
 
 .header {
-  padding: 100px 40px;
+  padding: 150px 40px;
   border-bottom: 1px solid rgb(221, 221, 221);
 }
 
@@ -198,6 +202,26 @@
   font-size: 3em;
   margin-bottom: 20px;
 }
+
+.dashboard-header p {
+  font-size: 1.1em;
+  color: rgb(190, 190, 190);
+}
+
+.dashboard-header label {
+  font-size: 1.1em;
+}
+
+.dashboard-header select {
+  font-size: 1.1em;
+  background-image: url("/select-arrow.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-size: 11em;
+  background-position-x: 87px;
+
+}
+
 
 .results-header-container h2 {
   font-size: 3em;

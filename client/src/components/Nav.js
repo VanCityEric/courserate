@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../logo.png";
+import logo from "../courseratelogo.svg";
 import NewPost from "../modals/NewPost";
 import { useNavigate } from "react-router-dom";
 import SearchForm from "./SearchForm";
