@@ -32,7 +32,6 @@ const Nav = ({
           <div>
             <img className="logo" src={logo} alt="logo" onClick={homeHandler} />
           </div>
-
           <ul className="nav-links">
             <li onClick={() => homeHandler()}>Home</li>
             <button className="btn post-btn" onClick={() => setIsOpen(true)}>
@@ -60,5 +59,4 @@ const Nav = ({
     </React.Fragment>
   );
 };
-
 export default Nav;

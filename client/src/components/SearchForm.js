@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
-import SearchDropdown from "./SearchDropdown";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NewPage from "./ResultsPage";
 
 const SearchForm = ({
-  searchArray,
-  currentSearchValue,
   setCurrentSearchValue,
   searchName,
   setSearchName,
@@ -13,8 +9,6 @@ const SearchForm = ({
 }) => {
   const [query, setQuery] = useState("");
   const [searchFound, setSearchFound] = useState("");
-  const [index, setIndex] = useState();
-  let className = "search-dropdown-container";
 
   const queryHandler = (e) => {
     setCurrentSearchValue(e.target.value);
@@ -26,8 +20,6 @@ const SearchForm = ({
     }
   };
 
-  const [active, setActive] = useState(0);
-
   const navigate = useNavigate();
   const searchHandler = (e) => {
     e.preventDefault();
@@ -36,14 +28,14 @@ const SearchForm = ({
     if (
       averagesArray.some(
         (entry) =>
-          entry.average_title.toString().toLowerCase() ===
-          query.toLowerCase()
+          entry.average_title.toString().toLowerCase() === query.toLowerCase()
       ) ||
       averagesArray.some(
-        (entry) =>
-          entry.average_name.toLowerCase() === query.toLowerCase()
+        (entry) => entry.average_name.toLowerCase() === query.toLowerCase()
       ) ||
-      averagesArray.some((entry) => entry.average_number.toString() === query.toString())
+      averagesArray.some(
+        (entry) => entry.average_number.toString() === query.toString()
+      )
     ) {
       setSearchFound("");
       navigate(`/search/${searchName}`);

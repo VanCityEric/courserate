@@ -39,7 +39,6 @@ const NewPostFilled = ({
             filledForm={filledForm}
             setFilledForm={setFilledForm}
             currentPageName={currentPageName}
-            courseArray={courseArray}
             id={id}
             currentCourseName={courseName}
             currentCourseNumber={courseNumber}
