@@ -81,7 +81,6 @@ const CoursePageHeader = ({
         filledForm={filledForm}
         setFilledForm={setFilledForm}
         currentPageName={currentPageName}
-        courseArray={courseArray}
         id={id}
         courseName={courseName}
         courseNumber={courseNumber}

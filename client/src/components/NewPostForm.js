@@ -189,8 +189,6 @@ const NewPostForm = ({
     courseNameValue = "Choose course";
   }
 
-
-
   console.log(courseComments);
 
   return (
