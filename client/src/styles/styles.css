@@ -350,7 +350,6 @@ label {
   border-radius: 5px;
   outline: none;
   font-size: 0.9em;
-  -webkit-appearance: none;
 }
 
 select:hover {
