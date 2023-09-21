@@ -2,8 +2,6 @@ import React from 'react'
 import Entries from './Entries'
 import { useNavigate } from "react-router-dom";
 
-
-
 const SearchEntries = ({averagesArray, entry, searchArray, setSearchName}) => {
     let averageNum = entry.average_avg;
     let repeatedTimes = entry.average_repeat;
